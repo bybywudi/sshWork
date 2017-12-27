@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!-- 定义业务逻辑组件模板,为之注入DAO组件 -->
+	<bean id="managerTemplate" abstract="true" lazy-init="true"
+		p:appDao-ref="appDao"
+		p:attendDao-ref="attendDao"
+		p:typeDao-ref="attendTypeDao"
+		p:checkDao-ref="checkDao"
+		p:empDao-ref="employeeDao"
+		p:mgrDao-ref="managerDao"
+		p:smDao-ref="smDao"
+		p:payDao-ref="payDao"/>
+
+	<!-- 定义两个业务逻辑组件，继承业务逻辑组件的模板 -->
+	<bean id="empManager"
+		class="service.impl.EmpManagerImpl"
+		parent="managerTemplate"/>
+	<bean id="mgrManager"
+		class="service.impl.MgrManagerImpl"
+		parent="managerTemplate"/>
+
+	<!-- cronExpression指定Cron表达式：每月3日2时启动 -->
+	<bean id="cronTriggerPay" 
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"
+		p:cronExpression="0 0 2 3 * ? *">
+		<property name="jobDetail">
+			<!-- 使用嵌套Bean的方式来定义任务Bean
+				jobClass指定任务Bean的实现类 -->
+			<bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean"
+				p:jobClass="schedule.PayJob"
+				p:durability="true">
+				<!-- 为任务Bean注入属性 -->
+				<property name="jobDataAsMap">
+					<map>
+						<entry key="empMgr" value-ref="empManager"/>
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 定义触发器来管理任务Bean 
+		cronExpression指定Cron表达式：周一到周五7点、12点执行调度-->
+	<bean id="cronTriggerPunch" 
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"
+		p:cronExpression="0 0 7,12 ? * MON-FRI">
+		<property name="jobDetail">
+			<!-- 使用嵌套Bean的方式来定义任务Bean
+				jobClass指定任务Bean的实现类 -->
+			<bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean"
+				p:jobClass="schedule.PunchJob"
+				p:durability="true">
+				<!-- 为任务Bean注入属性 -->
+				<property name="jobDataAsMap">
+					<map>
+						<entry key="empMgr" value-ref="empManager"/>
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- 执行实际的调度调度 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTriggerPay"/>
+				<ref bean="cronTriggerPunch"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置Hibernate的局部事务管理器，使用HibernateTransactionManager类 
+		并注入SessionFactory的引用 -->
+	<bean id="transactionManager" class=
+		"org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory"/>	
+	<!-- 配置事务增强处理Bean,指定事务管理器 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 用于配置详细的事务语义 -->
+		<tx:attributes>
+			<!-- 所有以'get'开头的方法是read-only的 -->
+			<tx:method name="get*" read-only="true"/>
+			<!-- 其他方法使用默认的事务设置 -->
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<!-- 配置一个切入点，匹配empManager和mgrManager
+			两个Bean的所有方法的执行 -->
+		<aop:pointcut id="leePointcut"
+			expression="bean(empManager) or bean(mgrManager)"/>
+		<!-- 指定在leePointcut切入点应用txAdvice事务增强处理 -->
+		<aop:advisor advice-ref="txAdvice" 
+			pointcut-ref="leePointcut"/>
+	</aop:config>	
+</beans>
