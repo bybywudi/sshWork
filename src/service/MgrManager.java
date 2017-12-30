@@ -51,4 +51,8 @@ public interface MgrManager
 	Manager login(String mgrName);
 	List<SetMgrApp> listAllSetMgrApp(String mgrName);
 	List<EmpBean> getAllMgrs();
+	List<Report> getAllEmpReportByPage(int mgrId,int empId,int pageNo,int pageSize);
+	UpFile getFileByReportId(int reportId);
+	List<Report> getAllReportByPage(int mgrId,int pageNo,int pageSize);
+	List<Report> getAllReportByTimeByPage(int mgrId,String time,int pageNo,int pageSize);
 }

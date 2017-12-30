@@ -53,6 +53,20 @@
 		</global-exception-mappings>
 
 <!--============================下面是员工角色的Action========================-->
+		<action name="sendReport" class="action.SendReportAction">
+			<!-- 动态设置Action的属性值 -->
+			  
+			<param name="savePath">D:\upfiles</param>
+			
+			<!--  
+			<param name="savePath">/home/upfiles</param>
+			-->
+			
+			<!-- 配置Struts 2默认的视图页面 -->
+			<result>/WEB-INF/content/employee/empSendReport.jsp</result>	
+        </action>
+		
+
 		<!-- 查看所有老师的Action -->
 		<action name="viewMgr" 
 			class="action.ViewMgrAction">
@@ -223,6 +237,10 @@
 
 		<action name="*">
 			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>
+		
+		<action name="empSendReport">
+			<result>/WEB-INF/content/employee/empSendReport.jsp</result>
 		</action>
 		
 		<action name="main">

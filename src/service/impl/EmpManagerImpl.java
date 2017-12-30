@@ -21,6 +21,8 @@ private EmployeeDao empDao;
 private ManagerDao mgrDao;
 private PaymentDao payDao;
 private SetMgrDao smDao;
+private ReportDao reportDao;
+private UpFileDao upFileDao;
 
 public void setAppDao(ApplicationDao appDao)
 {
@@ -59,6 +61,14 @@ public void setPayDao(PaymentDao payDao)
 
 public void setSmDao(SetMgrDao smDao) {
 	this.smDao = smDao;
+}
+
+public void setReportDao(ReportDao reportDao) {
+	this.reportDao = reportDao;
+}
+
+public void setUpFileDao(UpFileDao upFileDao) {
+	this.upFileDao = upFileDao;
 }
 
 /**
@@ -384,6 +394,11 @@ public boolean addApplication(int attId , int typeId
 	return true;
 }
 
+/**
+ * 设置学生的老师
+ * @param mgrName 申请的老师的用户名
+ * @param empId 发出申请的学生id
+ */
 public void setMgr(String mgrName,int empId) {
 	Manager m = mgrDao.findByName(mgrName);
 	if (m == null)
@@ -395,11 +410,39 @@ public void setMgr(String mgrName,int empId) {
 	empDao.save(emp);
 }
 
+/**
+ * 发送请求添加为老师的申请
+ * 一个SetMgrApp对象里就包含了老师的用户名，学生的Id等必要的信息
+ * 
+ */
 public void sendSetMgrApp(SetMgrApp sma) {
 	if(smDao.findByMgrNameAndEmpId(sma.getMgrName(), sma.getEmpId()) != null) {
 		throw new HrException("请勿重复发送申请");
 	}else {
 		smDao.save(sma);
 	}
+}
+
+public void sendReport(Report report,UpFile upfile) {
+	reportDao.save(report);
+	upfile.setCorrId(report.getId());
+	System.out.println(upfile.getSavePath());
+	System.out.println(upfile.getFileName());
+	System.out.println(upfile.getCorrId());
+	System.out.println(upfile.getUserId());
+	upFileDao.save(upfile);
+}
+
+public void sendReport(Report report) {
+	reportDao.save(report);
+}
+
+public List<Report> getAllEmpReportByPage(int mgrId,int empId,int pageNo,int pageSize){
+	return reportDao.findByMgrIdAndEmpIdByPage(mgrId, empId, pageNo, pageSize);
+}
+
+public UpFile getFileByReportId(int reportId) {
+	
+	return upFileDao.findByReportId(reportId);
 }
 }

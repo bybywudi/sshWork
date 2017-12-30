@@ -8,7 +8,7 @@
 <s:head/>
 </head>
 <body>
-<%@include file="header.jsp"%>
+<%@include file="empheader.jsp"%>
 <table width="960" align="center"
 	background="${pageContext.request.contextPath}/images/bodybg.jpg">
 <tr>
@@ -20,19 +20,18 @@
 </s:if>
 <s:actionerror cssClass="error"/>
 <div align="center">
-<s:form action="processLogin">
-	<s:textfield name="manager.name" label="用户名"/>
-	<s:textfield name="manager.pass" label="密码"/>
-	<s:textfield name="vercode" label="验证码"/>
-	<tr><td colspan="2">
-	<s:submit value="登录" theme="simple"/><s:reset  theme="simple" value="重填"/>
-	</td></tr>
+<s:form action="sendReport"
+	enctype="multipart/form-data">
+	<s:textfield name="report.headline" label="报告标题"/>
+	<s:textarea name="report.content" label="报告内容"/>
+	添加文件（可选）：<br/>
+	<s:file name="upload" label="选择文件"/>
+	<s:textarea name="description" label="文件描述"/>
+	<s:submit value="发送报告"/>
 </s:form>
 </div>
-验证码：<img name="d" src="authImg">
 </td>
 </tr>
 </table>
-<%@include file="footer.jsp"%>
 </body>
 </html>

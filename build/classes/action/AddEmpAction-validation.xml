@@ -6,29 +6,30 @@
 <validators>
 	<field name="emp.name">
 		<field-validator type="requiredstring">
-			<message>Ô±ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î£¡</message>
+			<message>Ô±¹¤ÓÃ»§Ãû±ØÌî£¡</message>
 		</field-validator>
 		<field-validator type="regex">
 			<param name="regex"><![CDATA[(\w{4,25})]]></param>
-			<message>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½Ò³ï¿½ï¿½È±ï¿½ï¿½ï¿½ï¿½ï¿½4ï¿½ï¿½25Ö®ï¿½ï¿½</message>
+			<message>ÄúÊäÈëµÄÓÃ»§ÃûÖ»ÄÜÊÇ×ÖÄ¸ºÍÊý×Ö£¬ÇÒ³¤¶È±ØÐëÔÚ4µ½25Ö®¼ä</message>
 		</field-validator>
 	</field>
 	<field name="emp.pass">
 		<field-validator type="requiredstring">
+			<message>Ô±¹¤ÃÜÂë±ØÌî£¡</message>
 		</field-validator>
 		<field-validator type="regex">
 			<param name="regex"><![CDATA[(\w{4,25})]]></param>
-			<message>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½Ò³ï¿½ï¿½È±ï¿½ï¿½ï¿½ï¿½ï¿½4ï¿½ï¿½25Ö®ï¿½ï¿½</message>
+			<message>ÄúÊäÈëµÄÃÜÂëÖ»ÄÜÊÇ×ÖÄ¸ºÍÊý×Ö£¬ÇÒ³¤¶È±ØÐëÔÚ4µ½25Ö®¼ä</message>
 		</field-validator>
 	</field>
 	<field name="emp.salary">
 		<field-validator type="required">
-			<message>Ô±ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½î£¡</message>
+			<message>Ô±¹¤ÔÂÐ½±ØÌî£¡</message>
 		</field-validator>
 		<field-validator type="double">
 			<param name="minInclusive">1500</param>
 			<param name="maxInclusive">4500</param>
-			<message>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½${minInclusive}ï¿½ï¿½${maxInclusive}Ö®ï¿½ï¿½</message>
+			<message>ÄúÊäÈëµÄÔ±¹¤ÔÂÐ½±ØÐëÔÚ${minInclusive}ºÍ${maxInclusive}Ö®¼ä</message>
 		</field-validator>
 	</field>
 </validators>

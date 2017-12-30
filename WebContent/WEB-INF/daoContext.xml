@@ -14,7 +14,7 @@
 		p:driverClass="com.mysql.jdbc.Driver"
 		p:jdbcUrl="jdbc:mysql://localhost:3308/hrSystem"
 		p:user="root"
-		p:password="root"
+		p:password="by1994313bY@."
 		p:maxPoolSize="200"
 		p:minPoolSize="2"
 		p:initialPoolSize="2"
@@ -36,6 +36,8 @@
 				<value>domain.Manager</value>
 				<value>domain.Payment</value>
 				<value>domain.SetMgrApp</value>
+				<value>domain.Report</value>
+				<value>domain.UpFile</value>
 			</list>
 		</property>
 		<!-- 定义Hibernate的SessionFactory的属性 -->
@@ -90,4 +92,11 @@
 	class="dao.impl.SetMgrDaoHibernate4"
 	parent="daoTemplate"/>
 
+<bean id="reportDao"
+	class="dao.impl.ReportDaoHibernate4"
+	parent="daoTemplate"/>
+	
+<bean id="upFileDao"
+	class="dao.impl.UpFileDaoHibernate4"
+	parent="daoTemplate"/>
 </beans>

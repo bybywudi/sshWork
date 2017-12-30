@@ -20,7 +20,9 @@
 		p:empDao-ref="employeeDao"
 		p:mgrDao-ref="managerDao"
 		p:smDao-ref="smDao"
-		p:payDao-ref="payDao"/>
+		p:payDao-ref="payDao"
+		p:reportDao-ref="reportDao"
+		p:upFileDao-ref="upFileDao"/>
 
 	<!-- 定义两个业务逻辑组件，继承业务逻辑组件的模板 -->
 	<bean id="empManager"

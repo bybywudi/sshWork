@@ -22,6 +22,8 @@ private EmployeeDao empDao;
 private ManagerDao mgrDao;
 private PaymentDao payDao;
 private SetMgrDao smDao;
+private ReportDao reportDao;
+private UpFileDao upFileDao;
 
 public void setAppDao(ApplicationDao appDao)
 {
@@ -61,6 +63,14 @@ public void setPayDao(PaymentDao payDao)
 
 public void setSmDao(SetMgrDao smDao) {
 	this.smDao = smDao;
+}
+
+public void setReportDao(ReportDao reportDao) {
+	this.reportDao = reportDao;
+}
+
+public void setUpFileDao(UpFileDao upFileDao) {
+	this.upFileDao = upFileDao;
 }
 
 public Manager login(String mgrName) {
@@ -276,5 +286,23 @@ public void disagreeApp(String mgrName,int empId) {
 
 public List<SetMgrApp> listAllSetMgrApp(String mgrName){
 	return smDao.findByMgr(mgrName);
+}
+
+//获得单个员工的所有报告
+public List<Report> getAllEmpReportByPage(int mgrId,int empId,int pageNo,int pageSize){
+	return reportDao.findByMgrIdAndEmpIdByPage(mgrId, empId, pageNo, pageSize);
+}
+
+public UpFile getFileByReportId(int reportId) {
+	
+	return upFileDao.findByReportId(reportId);
+}
+
+public List<Report> getAllReportByPage(int mgrId,int pageNo,int pageSize){
+	return reportDao.findByMgrIdByPage(mgrId, pageNo, pageSize);
+}
+
+public List<Report> getAllReportByTimeByPage(int mgrId,String time,int pageNo,int pageSize){
+	return reportDao.findByMgrIdAndTimeByPage(mgrId, time, pageNo, pageSize);
 }
 }

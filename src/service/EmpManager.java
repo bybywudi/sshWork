@@ -113,5 +113,9 @@ package service;
 		Employee loginEmp(String empName);
 		Manager loginMgr(String mgrName);
 		void sendSetMgrApp(SetMgrApp sma);
+		void sendReport(Report report,UpFile upfile);
+		void sendReport(Report report);
+		List<Report> getAllEmpReportByPage(int mgrId,int empId,int pageNo,int pageSize);
+		UpFile getFileByReportId(int reportId);
 	}
 
