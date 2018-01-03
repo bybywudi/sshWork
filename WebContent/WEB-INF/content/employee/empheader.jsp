@@ -18,6 +18,7 @@ Date:
 		<td><div align="center"><a href="viewemployeeSalary.action">查看历史工资</a></div></td>
 	-->
 		<td><div align="center"><a href="empSendReport">提交报告</a></div></td>
+		<td><div align="center"><a href="listReportByEmpId.action?currentpage=1&pagesize=10">查看报告</a></div></td>
 		<td><div align="center"><a href="viewMgr.action">查看所有老师</a></div></td>
 		<td><div align="center"><a href="logout.action">退出系统</a></div></td>
 	</tr>

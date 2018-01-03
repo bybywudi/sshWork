@@ -38,6 +38,7 @@
 				<value>domain.SetMgrApp</value>
 				<value>domain.Report</value>
 				<value>domain.UpFile</value>
+				<value>domain.ProjectMember</value>
 			</list>
 		</property>
 		<!-- 定义Hibernate的SessionFactory的属性 -->
@@ -98,5 +99,9 @@
 	
 <bean id="upFileDao"
 	class="dao.impl.UpFileDaoHibernate4"
+	parent="daoTemplate"/>
+	
+<bean id="pmDao"
+	class="dao.impl.ProjectMemberDaoHibernate4"
 	parent="daoTemplate"/>
 </beans>

@@ -24,6 +24,11 @@ private PaymentDao payDao;
 private SetMgrDao smDao;
 private ReportDao reportDao;
 private UpFileDao upFileDao;
+private ProjectMemberDao pmDao;
+
+public void setPmDao(ProjectMemberDao pmDao) {
+	this.pmDao = pmDao;
+}
 
 public void setAppDao(ApplicationDao appDao)
 {
@@ -76,6 +81,7 @@ public void setUpFileDao(UpFileDao upFileDao) {
 public Manager login(String mgrName) {
 	return mgrDao.findByName(mgrName);
 }
+
 
 /**
  * 新增员工
@@ -293,6 +299,16 @@ public List<Report> getAllEmpReportByPage(int mgrId,int empId,int pageNo,int pag
 	return reportDao.findByMgrIdAndEmpIdByPage(mgrId, empId, pageNo, pageSize);
 }
 
+public PageBean<Report> getAllEmpReportByPage(int mgrId,int empId,QuerryInfo qr){
+	PageBean pb = new PageBean();
+	pb.setList(reportDao.findByMgrIdAndEmpIdByPage(mgrId, empId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)reportDao.findCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	
+	return pb;
+}
+
 public UpFile getFileByReportId(int reportId) {
 	
 	return upFileDao.findByReportId(reportId);
@@ -304,5 +320,72 @@ public List<Report> getAllReportByPage(int mgrId,int pageNo,int pageSize){
 
 public List<Report> getAllReportByTimeByPage(int mgrId,String time,int pageNo,int pageSize){
 	return reportDao.findByMgrIdAndTimeByPage(mgrId, time, pageNo, pageSize);
+}
+
+public ReportBean viewReport(int reportId) {
+	Report report = reportDao.get(Report.class, reportId);
+	UpFile upfile = upFileDao.findByReportId(reportId);
+	report.setContent(report.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
+	
+	ReportBean reportBean = new ReportBean(report,upfile);
+	
+	return reportBean;
+}
+
+public UpFile findFile(int fileId) {
+	return upFileDao.get(UpFile.class, fileId);
+
+}
+
+/**
+ * 管理员添加论文文件
+ */
+
+public void addFile(UpFile file) {
+	file.setFileType(3);
+	upFileDao.save(file);
+}
+
+/**
+ * 列出老师所在实验室的论文成果列表
+ */
+
+public PageBean<UpFile> listPaperFile(int mgrId,QuerryInfo qr) {
+	PageBean pb = new PageBean();
+	pb.setList(upFileDao.findPaperByMgrIdByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)upFileDao.findPaperCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	
+	return pb;
+}
+
+/**
+ * 管理员添加项目成员照片
+ */
+
+public void addProjectMemberWithPic(UpFile file,ProjectMember pm) {
+	pmDao.save(pm);
+	file.setFileType(4);
+	file.setCorrId(pm.getId());
+	upFileDao.save(file);
+}
+
+public void addProjectMember(ProjectMember pm) {
+	pmDao.save(pm);
+}
+
+public List<ProjectMemberBean> listProjectMember(int mgrId) {
+	List pmbs = new ArrayList();
+	
+	List<ProjectMember> pmlist = pmDao.findByMgrId(mgrId);
+	for(ProjectMember pm : pmlist) {
+		ProjectMemberBean pmb = new ProjectMemberBean();
+		pmb.setUpfile(upFileDao.findByProjectMemberId(pm.getId()));
+		pmb.setPm(pm);
+		pmbs.add(pmb);
+	}
+	
+	return pmbs;
 }
 }

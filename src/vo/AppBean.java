@@ -13,7 +13,7 @@ public class AppBean implements Serializable
 	private String reason;
 
 
-	// �޲����Ĺ�����
+
 	public AppBean()
 	{
 	}

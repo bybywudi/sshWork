@@ -40,7 +40,7 @@ Date:
   <tr>
 	<td>
 	<s:property value="#session.userbean.realname"/>
-	，欢迎您使用JavaEE简单工作流系统，您是普通员工</td>
+	，欢迎您，您是学生</td>
   </tr>
   <tr height="60">
 	<td>&nbsp;</td>

@@ -27,7 +27,7 @@ public class UpFile implements Serializable{
 	@Column(name="file_userid",nullable=false)
 	private Integer userId;
 	
-	//文件类型，0代表上传给老师的报告文件，1代表会议相关文件，2代表个人文档，代码等文件
+	//文件类型，0代表上传给老师的报告文件，1代表会议相关文件，2代表个人文档，代码等文件，3代表论文成果文件,4代表展示的照片文件
 	@Column(name="file_type",nullable=false)
 	private Integer fileType;
 	

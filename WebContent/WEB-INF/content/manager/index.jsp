@@ -15,7 +15,7 @@ Date:
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>经理首页</title>
+<title>老师首页</title>
 </head>
 <body>
 <%@include file="../header.jsp"%> 
@@ -39,7 +39,7 @@ Date:
   </tr>
   <tr>
 	<td><s:property value="#session.userbean.realname"/>
-		，欢迎您使用JavaEE简单工作流系统，您是经理！</td>
+		，欢迎您，您是老师！</td>
   </tr>
   <tr height="60">
 	<td>&nbsp;</td>

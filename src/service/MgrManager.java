@@ -55,4 +55,12 @@ public interface MgrManager
 	UpFile getFileByReportId(int reportId);
 	List<Report> getAllReportByPage(int mgrId,int pageNo,int pageSize);
 	List<Report> getAllReportByTimeByPage(int mgrId,String time,int pageNo,int pageSize);
+	PageBean<Report> getAllEmpReportByPage(int mgrId,int empId,QuerryInfo qr);
+	ReportBean viewReport(int reportId);
+	UpFile findFile(int fileId) ;
+	void addFile(UpFile file);
+	PageBean<UpFile> listPaperFile(int mgrId,QuerryInfo qr);
+	void addProjectMemberWithPic(UpFile file,ProjectMember pm);
+	void addProjectMember(ProjectMember pm);
+	List<ProjectMemberBean> listProjectMember(int mgrId) ;
 }

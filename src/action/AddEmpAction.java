@@ -16,7 +16,7 @@ public class AddEmpAction extends MgrBaseAction
 
 	private Employee emp;
 
-
+ 
 	public void setEmp(Employee emp)
 	{
 		this.emp = emp;

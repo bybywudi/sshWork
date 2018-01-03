@@ -53,6 +53,11 @@
 		</global-exception-mappings>
 
 <!--============================下面是员工角色的Action========================-->
+		<action name="empViewReport" method="empViewReport"
+			class="action.ViewReportAction">
+			<result>/WEB-INF/content/employee/viewReport.jsp</result>
+		</action>
+		
 		<action name="sendReport" class="action.SendReportAction">
 			<!-- 动态设置Action的属性值 -->
 			  
@@ -64,9 +69,58 @@
 			
 			<!-- 配置Struts 2默认的视图页面 -->
 			<result>/WEB-INF/content/employee/empSendReport.jsp</result>	
+       
+        </action>
+        
+        <action name="addChengguo" class="action.AddFileAction">
+			<!-- 动态设置Action的属性值 -->
+			  
+			<param name="savePath">D:\upfiles</param>
+			
+			<!--  
+			<param name="savePath">/home/upfiles</param>
+			-->
+			
+			<!-- 配置Struts 2默认的视图页面 -->
+			<result>/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>	
         </action>
 		
-
+		 <action name="addProjectMember" class="action.AddFileAction" method="addProjectMember">
+			<!-- 动态设置Action的属性值 -->
+			  
+			<param name="savePath">D:\upfiles</param>
+			
+			<!--  
+			<param name="savePath">/home/upfiles</param>
+			-->
+			
+			<!-- 配置Struts 2默认的视图页面 -->
+			<result>/WEB-INF/content/manager/addProjectMember.jsp</result>	
+        </action>
+		
+		<action name="listProjectMember"
+			class="action.ListProjectMemberAction">
+			<result>/WEB-INF/content/manager/listProjectMember.jsp</result>
+		</action>
+		
+		<action name="listReportByEmpId" method="byEmpId"
+			class="action.ListReportAction">
+			<result>/WEB-INF/content/employee/listReport.jsp</result>
+		</action>
+		
+		<action name="download" class="action.FileDownloadAction">
+		<!-- 指定被下载资源的位置 -->
+			<!-- 配置结果类型为stream的结果 -->
+			<result type="stream">
+				<!-- 指定由getTargetFile()方法返回被下载文件的InputStream -->
+				<param name="inputName">targetFile</param>
+				<param name="contentDisposition">fileName="${fileName}"</param>
+				<param name="contentType">application/octet-stream</param>  
+				<!-- 指定下载文件的缓冲大小 -->
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
 		<!-- 查看所有老师的Action -->
 		<action name="viewMgr" 
 			class="action.ViewMgrAction">
@@ -171,6 +225,20 @@
 		</action>-->
 		<!-- 老师处理学生的加入申请 -->
 		
+		<action name="listPaper" method="listPaperByMgr"
+			class="action.ListFileAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/chengguozongshu.jsp</result>
+		</action>
+		
+		<action name="viewListPaper" method="listPaperByMgr"
+			class="action.ListFileAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>paper.jsp</result>
+		</action>
+		
 		<action name="manageSetMgr"
 			class="action.SetMgrAction">
 			<interceptor-ref name="basicStack"/>
@@ -239,8 +307,20 @@
 			<result>/WEB-INF/content/{1}.jsp</result>
 		</action>
 		
+		<action name="zengjiachengguomanage">
+			<result>/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>
+		</action>
+		
 		<action name="empSendReport">
 			<result>/WEB-INF/content/employee/empSendReport.jsp</result>
+		</action>
+		
+		<action name="manageHtml">
+			<result>/WEB-INF/content/manager/manageHtml.jsp</result>
+		</action>
+		
+		<action name="toaddProjectMember">
+			<result>/WEB-INF/content/manager/addProjectMember.jsp</result>
 		</action>
 		
 		<action name="main">

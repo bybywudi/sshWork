@@ -21,6 +21,7 @@
 			<message>您输入的密码只能是字母和数字，且长度必须在4到25之间</message>
 		</field-validator>
 	</field>
+	<!-- 
 	<field name="vercode">
 		<field-validator type="requiredstring">
 			<message>验证码必填！</message>
@@ -30,4 +31,5 @@
 			<message>您输入的验证码只能是字母和数字，且长度必须在6位</message>
 		</field-validator>
 	</field>
+	 -->
 </validators>

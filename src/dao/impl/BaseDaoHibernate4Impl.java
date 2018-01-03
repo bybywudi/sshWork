@@ -73,6 +73,19 @@ public class BaseDaoHibernate4Impl<T> implements BaseDao<T>
 		}
 		return 0;
 	}
+	/*
+	public int findQueryCount(Class<T> entityClazz,String hql,Object... params)
+	{
+		// 创建查询
+		Query query = getSessionFactory().getCurrentSession()
+			.createQuery(hql);
+		// 为包含占位符的HQL语句设置参数
+		for(int i = 0 , len = params.length ; i < len ; i++)
+		{
+			query.setParameter(i + "" , params[i]);
+		}
+		return query.list().size();
+	}*/
 
 	// 根据HQL语句查询实体
 	@SuppressWarnings("unchecked")

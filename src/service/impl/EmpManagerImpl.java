@@ -23,6 +23,11 @@ private PaymentDao payDao;
 private SetMgrDao smDao;
 private ReportDao reportDao;
 private UpFileDao upFileDao;
+private ProjectMemberDao pmDao;
+
+public void setPmDao(ProjectMemberDao pmDao) {
+	this.pmDao = pmDao;
+}
 
 public void setAppDao(ApplicationDao appDao)
 {
@@ -426,10 +431,6 @@ public void sendSetMgrApp(SetMgrApp sma) {
 public void sendReport(Report report,UpFile upfile) {
 	reportDao.save(report);
 	upfile.setCorrId(report.getId());
-	System.out.println(upfile.getSavePath());
-	System.out.println(upfile.getFileName());
-	System.out.println(upfile.getCorrId());
-	System.out.println(upfile.getUserId());
 	upFileDao.save(upfile);
 }
 
@@ -437,12 +438,27 @@ public void sendReport(Report report) {
 	reportDao.save(report);
 }
 
-public List<Report> getAllEmpReportByPage(int mgrId,int empId,int pageNo,int pageSize){
-	return reportDao.findByMgrIdAndEmpIdByPage(mgrId, empId, pageNo, pageSize);
+public PageBean<Report> getAllEmpReportByPage(int mgrId,int empId,QuerryInfo qr){
+	PageBean pb = new PageBean();
+	pb.setList(reportDao.findByMgrIdAndEmpIdByPage(mgrId, empId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)reportDao.findCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	
+	return pb;
 }
 
 public UpFile getFileByReportId(int reportId) {
 	
 	return upFileDao.findByReportId(reportId);
+}
+
+public ReportBean viewReport(int reportId) {
+	Report report = reportDao.get(Report.class, reportId);
+	UpFile upfile = upFileDao.get(UpFile.class, upFileDao.findByReportId(reportId));
+	
+	ReportBean reportBean = new ReportBean(report,upfile);
+	
+	return reportBean;
 }
 }
