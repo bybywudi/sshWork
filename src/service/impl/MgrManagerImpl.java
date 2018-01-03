@@ -6,6 +6,7 @@ import vo.*;
 import exception.*;
 import service.*;
 
+import java.io.File;
 import java.text.*;
 import java.util.*;
 
@@ -375,17 +376,93 @@ public void addProjectMember(ProjectMember pm) {
 	pmDao.save(pm);
 }
 
-public List<ProjectMemberBean> listProjectMember(int mgrId) {
+/*public List<ProjectMemberBean> listProjectMember(int mgrId) {
 	List pmbs = new ArrayList();
-	
+	String separator = System.getProperty("file.separator");
+	String savePath;
 	List<ProjectMember> pmlist = pmDao.findByMgrId(mgrId);
 	for(ProjectMember pm : pmlist) {
 		ProjectMemberBean pmb = new ProjectMemberBean();
-		pmb.setUpfile(upFileDao.findByProjectMemberId(pm.getId()));
+		UpFile upfile = upFileDao.findByProjectMemberId(pm.getId());
+		savePath = upfile.getSavePath();
+		System.out.println(upfile.getSavePath());
+		System.out.println(savePath);
+		savePath = savePath.replaceAll("\\\\","/"); 
+		System.out.println(savePath);
+		savePath = savePath.substring(savePath.indexOf("/",savePath.indexOf("/")+1),savePath.length()-1);
+		 
+		System.out.println(savePath);
+		
+		savePath = savePath + "/" + upfile.getUuidName();
+		upfile.setSavePath(savePath);
+		pmb.setUpfile(upfile);
 		pmb.setPm(pm);
 		pmbs.add(pmb);
 	}
 	
 	return pmbs;
+}*/
+
+public List<ProjectMemberBean> listProjectMember(int mgrId) {
+	List pmbs = new ArrayList();
+	String separator = System.getProperty("file.separator");
+	String fsavePath;
+	UpFile upfile;
+	List<ProjectMember> pmlist = pmDao.findByMgrId(mgrId);
+	for(ProjectMember pm : pmlist) {
+		ProjectMemberBean pmb = new ProjectMemberBean();
+		upfile = upFileDao.findByProjectMemberId(pm.getId());
+		 
+		
+		fsavePath = upfile.getSavePath();
+		fsavePath = fsavePath.replaceAll("\\\\","/"); 
+		
+		fsavePath = fsavePath.substring(fsavePath.indexOf("/",fsavePath.indexOf("/")+1),fsavePath.length());
+
+		fsavePath = fsavePath + "/" + upfile.getUuidName();
+
+		//upfile.setSavePath(savePath);这句话千万不能加，hibernate中的upfile在瞬态的时候使用set方法会改变数据库中的值
+		//pmb.setUpfile(upfile); 
+		//由于fsavePath一开始起名是savePath，在改变savePath的时候一直会出现hibernate向数据库保存该条记录的情况，改成不一样的名字就OK了
+		pmb.setFsavePath(fsavePath);
+		
+		pmb.setPm(pm);
+		pmbs.add(pmb);
+	}
+	
+	return pmbs;
+}
+/**
+ * 删除项目成员的数据库记录，删除相应的文件的数据库记录，并删除相应的文件
+ */
+public void deleteProjectMember(int pmId) {
+	ProjectMember pm = pmDao.get(ProjectMember.class, pmId);
+	UpFile upfile = upFileDao.findByProjectMemberId(pmId);
+	String fsavePath = upfile.getSavePath() + System.getProperty("file.separator") + upfile.getUuidName();
+	File file = new File(fsavePath);
+	
+	pmDao.delete(pm);
+	upFileDao.delete(upfile);
+     // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
+     if (file.exists() && file.isFile()) {
+         file.delete();
+     }
+            
+}
+
+/**
+ * 删除论文成果的数据库记录，并删除相应的文件
+ */
+public void deletePaperFile(int fId) {
+	UpFile upfile = upFileDao.get(UpFile.class, fId);
+	String fsavePath = upfile.getSavePath() + System.getProperty("file.separator") + upfile.getUuidName();
+	File file = new File(fsavePath);
+	
+	upFileDao.delete(upfile);
+     // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
+     if (file.exists() && file.isFile()) {
+         file.delete();
+     }
+            
 }
 }

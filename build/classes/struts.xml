@@ -121,6 +121,10 @@
 			</result>
 		</action>
 		
+		<!-- 删除数据用的action -->
+		
+		
+		
 		<!-- 查看所有老师的Action -->
 		<action name="viewMgr" 
 			class="action.ViewMgrAction">
@@ -224,6 +228,20 @@
 			<result>/WEB-INF/content/manager/setMgrApp.jsp</result>
 		</action>-->
 		<!-- 老师处理学生的加入申请 -->
+		<!-- 删除数据部分 -->
+		<action name="deleteProjectMember" method="deleteProjectMember"
+			class="action.DeleteAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/listProjectMember.jsp</result>
+		</action>
+		
+		<action name="deletePaperFile" method="deletePaperFile"
+			class="action.DeleteAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/chengguozongshu.jsp</result>
+		</action>
 		
 		<action name="listPaper" method="listPaperByMgr"
 			class="action.ListFileAction">

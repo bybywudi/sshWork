@@ -25,7 +25,7 @@
 	</td>
   </tr>
 		<tr>
-		<td width="94"><div align="center"><a href="listAll.action">项目成员管理</a></div></td>
+		<td width="94"><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
 		<td width="139"><div align="center"><a href="viewEmp.action">成果综述管理</a></div></td>
 		<td width="139"><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
 		</tr>
@@ -37,7 +37,8 @@
 
 			<s:property value="pm.name"/><br/>
 			<s:property value="pm.introduction"/><br/>
-			<a href="download.action?id=<s:property value="upfile.id"/>"><s:property value="upfile.fileName"/></a><br/>
+			<img src="/upfiles<s:property value="fsavePath"/>"/><br/>
+			<a href="deleteProjectMember?id=<s:property value="pm.id"/>">删除</a><br/>
 
 		</s:iterator>  
   <tr height="60">

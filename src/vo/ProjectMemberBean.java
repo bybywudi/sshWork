@@ -13,6 +13,7 @@ public class ProjectMemberBean implements Serializable{
 	
 	private ProjectMember pm;
 	private UpFile upfile;
+	private String fsavePath;
 	public ProjectMember getPm() {
 		return pm;
 	}
@@ -25,5 +26,13 @@ public class ProjectMemberBean implements Serializable{
 	public void setUpfile(UpFile upfile) {
 		this.upfile = upfile;
 	}
+	public String getFsavePath() {
+		return fsavePath;
+	}
+	public void setFsavePath(String fsavePath) {
+		this.fsavePath = fsavePath;
+	}
+
+
 	
 }

@@ -63,4 +63,6 @@ public interface MgrManager
 	void addProjectMemberWithPic(UpFile file,ProjectMember pm);
 	void addProjectMember(ProjectMember pm);
 	List<ProjectMemberBean> listProjectMember(int mgrId) ;
+	void deleteProjectMember(int pmId) ;
+	void deletePaperFile(int fId);
 }
