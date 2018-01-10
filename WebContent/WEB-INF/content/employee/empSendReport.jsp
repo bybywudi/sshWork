@@ -26,6 +26,7 @@
 	<s:textarea name="report.content" label="报告内容"/>
 	添加文件（可选）：<br/>
 	<s:file name="upload" label="选择文件"/>
+	<s:fielderror/>
 	<s:textarea name="description" label="文件描述"/>
 	<s:submit value="发送报告"/>
 </s:form>

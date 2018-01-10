@@ -2,7 +2,7 @@
     <wb-module deploy-name="sshWork">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="sshWork"/>
         <property name="java-output-path" value="/sshWork/build/classes"/>
+        <property name="context-root" value="testWork"/>
     </wb-module>
 </project-modules>

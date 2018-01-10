@@ -11,15 +11,17 @@ public class ReportBean implements Serializable{
 	
 	private Report report;
 	private UpFile upfile;
-	
+	private String relacedContent;
 	
 	public ReportBean() {
 	}
-	public ReportBean(Report report, UpFile upfile) {
-
+	
+	public ReportBean(Report report, UpFile upfile, String relacedContent) {
 		this.report = report;
 		this.upfile = upfile;
+		this.relacedContent = relacedContent;
 	}
+
 	public Report getReport() {
 		return report;
 	}
@@ -31,6 +33,12 @@ public class ReportBean implements Serializable{
 	}
 	public void setUpfile(UpFile upfile) {
 		this.upfile = upfile;
+	}
+	public String getRelacedContent() {
+		return relacedContent;
+	}
+	public void setRelacedContent(String relacedContent) {
+		this.relacedContent = relacedContent;
 	}
 	
 	

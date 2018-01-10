@@ -30,6 +30,18 @@ public class SendReportAction extends EmpBaseAction
 	private String uploadFileName;
 
 	private String savePath;
+	
+	private String lsavePath;
+	
+	
+	
+	public String getLsavePath() {
+		return lsavePath;
+	}
+
+	public void setLsavePath(String lsavePath) {
+		this.lsavePath = lsavePath;
+	}
 
 	public void setSavePath(String value)
 	{
@@ -102,6 +114,10 @@ public class SendReportAction extends EmpBaseAction
 	public String execute()
 		throws Exception
 	{
+		if(System.getProperty("file.separator").equals("/")) {
+			setSavePath(getLsavePath());
+		}
+		
 		ActionContext ctx = ActionContext.getContext();
 		Employee emp = (Employee) ctx.getSession().get(WebConstant.USERBEAN);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式

@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>ʵ���ҳɹ�չʾ</title>
+<title>实验室成果展示</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="styles/layout.css" type="text/css" />
@@ -12,16 +12,20 @@
 </head>
 <body id="top">
 <div class="wrapper">
-  <div id="header">
-    <h1><a href="index.html">MCCʵ����</a></h1>
-    <p>��Ȼ��ѧ����ɹ�չʾ</p>
+	
+ <div id="header">
+  
+  	<div class="imgholder"><img src="images/xidian.png" width="100" height="100" alt="" /></div>
+  	
+    <h1>国家自然科学基金项目成果展示</h1>
+    <p>项目名称（编号）：非凸二次规划问题的低秩半定规划处理方法研究及其在信号处理中的应用（61372135）</p>
   </div>
-</div>
 
 <!-- ####################################################################################################### -->
+<!--  
 <div class="wrapper">
   <div id="topbar">
-    <div class="fl_left">Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com</div>
+    <div class="fl_left">Tel:029-88202816 | Mail: ychwang@mail.xidian.edu.cn</div>
     <div class="fl_right">
       <form action="#" method="post">
         <fieldset>
@@ -34,36 +38,38 @@
     <br class="clear" />
   </div>
 </div>
+-->
 <!-- ####################################################################################################### -->
 <div class="wrapper">
   <div id="topnav">
     <ul class="nav">
-      <li class="active"><a href="index.jsp">��ҳ</a></li>
-      <li><a href="style-demo.html">��Ŀ��Ա</a></li>
-      <li><a href="full-width.html">�ɹ�����</a></li>
-      <li><a href="viewListPaper.action?currentpage=1&pagesize=10&mgrId=4">���ĳɹ�</a></li>
-      <li class="last"><a href="gallery.html">��ϵ����</a></li>
+      <li class="active"><a href="index.action?mgrId=1">首页</a></li>
+      <li><a href="viewListProjectMember.action?mgrId=1">项目成员</a></li>
+      <li><a href="viewListAchievement.action?mgrId=1">成果综述</a></li>
+      <li><a href="viewListPaper.action?currentpage=1&pagesize=100&mgrId=1">论文成果</a></li>
+      <li><a href="viewListPatent.action?currentpage=1&pagesize=100&mgrId=1">专利成果</a></li>
+      <li class="last"><a href="communication">国内外学术合作交流</a></li>
+      <li class="last"><a href="talents">人才培养</a></li>
     </ul>
     <div class="clear"></div>
   </div>
 </div>
-
 <!-- ####################################################################################################### -->
-<div class="wrapper">
+	<div class="wrapper1">
 
-        <h2>���ĳɹ�</h2>
+        <h2>论文成果</h2>
         <table summary="Summary Here" cellpadding="0" cellspacing="0">
           <thead>
             <tr>
-              <th width="75%">����</th>
-              <th width="25%">�ļ�����</th>
+              <th width="75%">标题</th>
+              <th width="25%">公共连接</th>
             </tr>
           </thead>
           <tbody>
 	      	 <s:iterator value="pb.list" status="index">  
 			  <tr class="light">
 				<td width="75%"><s:property value="description"/></td>
-				<td width="25%"><a href="download.action?id=<s:property value="id"/>"><s:property value="fileName"/></a></td>
+				<td width="25%"><a href="<s:property value="url"/>"><s:property value="urlName"/></a></td>
 			  </tr>
 			 </s:iterator>  
           </tbody>

@@ -37,6 +37,37 @@ public class AddFileAction extends MgrBaseAction
 	private String uploadFileName;
 
 	private String savePath;
+	
+	private String lsavePath;
+	
+	private String url;
+	
+	private String urlName;
+
+	
+	public String getUrlName() {
+		return urlName;
+	}
+
+	public void setUrlName(String urlName) {
+		this.urlName = urlName;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getLsavePath() {
+		return lsavePath;
+	}
+
+	public void setLsavePath(String lsavePath) {
+		this.lsavePath = lsavePath;
+	}
 
 	public void setSavePath(String value)
 	{
@@ -115,8 +146,23 @@ public class AddFileAction extends MgrBaseAction
 	// 管理员添加论文成果
 	public String execute()
 		throws Exception
-	{
+	{		
+		if(System.getProperty("file.separator").equals("/")) {
+			setSavePath(getLsavePath());
+		}
 			mgr.addFile(upLoadFile());
+			addActionMessage("添加成功");
+			return SUCCESS;
+	}
+	
+	// 管理员添加论文成果
+	public String addPatent()
+		throws Exception
+	{		
+		if(System.getProperty("file.separator").equals("/")) {
+			setSavePath(getLsavePath());
+		}
+			mgr.addPatentFile(upLoadFile());
 			addActionMessage("添加成功");
 			return SUCCESS;
 	}
@@ -124,6 +170,10 @@ public class AddFileAction extends MgrBaseAction
 	public String addProjectMember()
 			throws Exception
 		{		
+		
+		if(System.getProperty("file.separator").equals("/")) {
+			setSavePath(getLsavePath());
+		}
 		ActionContext ctx = ActionContext.getContext();
 		Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
 			ProjectMember pm = new ProjectMember();
@@ -154,6 +204,8 @@ public class AddFileAction extends MgrBaseAction
 			upfile.setDescription(description);
 			upfile.setSavePath(WebUtils.generateSavePath(savePath, uploadFileName));
 			upfile.setUserId(emp.getId());
+			upfile.setUrl(url);
+			upfile.setUrlName(urlName);
 			//upfile.setFileType(3);
 			upfile.setUpTime(df.format(System.currentTimeMillis()));
 			

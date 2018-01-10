@@ -39,6 +39,7 @@
 				<value>domain.Report</value>
 				<value>domain.UpFile</value>
 				<value>domain.ProjectMember</value>
+				<value>domain.Article</value>
 			</list>
 		</property>
 		<!-- 定义Hibernate的SessionFactory的属性 -->
@@ -103,5 +104,9 @@
 	
 <bean id="pmDao"
 	class="dao.impl.ProjectMemberDaoHibernate4"
+	parent="daoTemplate"/>
+
+<bean id="articleDao"
+	class="dao.impl.ArticleDaoHibernate4"
 	parent="daoTemplate"/>
 </beans>

@@ -9,6 +9,7 @@
 	<constant name="struts.custom.i18n.resources" value="resource"/>
 	<constant name="struts.i18n.encoding" value="GBK"/>
 	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.multipart.maxSize" value="10000000"/>
 	<package name="default" extends="struts-default">
 		<interceptors>
 			<!-- 配置普通员工角色的权限检查拦截器 -->
@@ -52,6 +53,7 @@
 				result="root"/>
 		</global-exception-mappings>
 
+
 <!--============================下面是员工角色的Action========================-->
 		<action name="empViewReport" method="empViewReport"
 			class="action.ViewReportAction">
@@ -60,15 +62,15 @@
 		
 		<action name="sendReport" class="action.SendReportAction">
 			<!-- 动态设置Action的属性值 -->
-			  
 			<param name="savePath">D:\upfiles</param>
 			
-			<!--  
-			<param name="savePath">/home/upfiles</param>
-			-->
+		
+			<param name="lsavePath">/home/upfiles</param>
+		
 			
 			<!-- 配置Struts 2默认的视图页面 -->
-			<result>/WEB-INF/content/employee/empSendReport.jsp</result>	
+			<result>/WEB-INF/content/employee/empSendReport.jsp</result>
+			<result name="input">/WEB-INF/content/employee/empSendReport.jsp</result>	
        
         </action>
         
@@ -77,12 +79,26 @@
 			  
 			<param name="savePath">D:\upfiles</param>
 			
-			<!--  
-			<param name="savePath">/home/upfiles</param>
-			-->
+		 
+			<param name="lsavePath">/home/upfiles</param>
+		
 			
 			<!-- 配置Struts 2默认的视图页面 -->
+			<result name="input">/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>	
 			<result>/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>	
+        </action>
+        
+         <action name="addPatent" class="action.AddFileAction" method="addPatent">
+			<!-- 动态设置Action的属性值 -->
+			  
+			<param name="savePath">D:\upfiles</param>
+			
+		 
+			<param name="lsavePath">/home/upfiles</param>
+		
+			
+			<!-- 配置Struts 2默认的视图页面 -->
+			<result>/WEB-INF/content/manager/addPatent.jsp</result>	
         </action>
 		
 		 <action name="addProjectMember" class="action.AddFileAction" method="addProjectMember">
@@ -90,9 +106,9 @@
 			  
 			<param name="savePath">D:\upfiles</param>
 			
-			<!--  
-			<param name="savePath">/home/upfiles</param>
-			-->
+			
+			<param name="lsavePath">/home/upfiles</param>
+		
 			
 			<!-- 配置Struts 2默认的视图页面 -->
 			<result>/WEB-INF/content/manager/addProjectMember.jsp</result>	
@@ -101,6 +117,11 @@
 		<action name="listProjectMember"
 			class="action.ListProjectMemberAction">
 			<result>/WEB-INF/content/manager/listProjectMember.jsp</result>
+		</action>
+		
+		<action name="viewListProjectMember"
+			class="action.ListProjectMemberAction">
+			<result>projectMember.jsp</result>
 		</action>
 		
 		<action name="listReportByEmpId" method="byEmpId"
@@ -228,6 +249,45 @@
 			<result>/WEB-INF/content/manager/setMgrApp.jsp</result>
 		</action>-->
 		<!-- 老师处理学生的加入申请 -->
+		
+		<action name="toEditFile" method="toeditFile"
+			class="action.EditFileAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/toEditFile.jsp</result>
+		</action>
+		
+		<action name="editFile" method="editFile"
+			class="action.EditFileAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/toEditFile.jsp</result>
+		</action>
+		
+		<action name="editAchievement" method="editAchievement"
+			class="action.ArticleAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/editAchievement.jsp</result>
+		</action>
+		
+		<action name="toEditAchievement" method="listAchievement"
+			class="action.ListArticleAction">
+
+			<result>/WEB-INF/content/manager/editAchievement.jsp</result>
+		</action>
+		
+		<action name="listAchievement" method="listAchievement"
+			class="action.ListArticleAction">
+
+			<result>/WEB-INF/content/manager/listAchievement.jsp</result>
+		</action>
+		
+		<action name="viewListAchievement" method="listAchievement"
+			class="action.ListArticleAction">
+
+			<result>acheivement.jsp</result>
+		</action>
 		<!-- 删除数据部分 -->
 		<action name="deleteProjectMember" method="deleteProjectMember"
 			class="action.DeleteAction">
@@ -243,6 +303,18 @@
 			<result>/WEB-INF/content/manager/chengguozongshu.jsp</result>
 		</action>
 		
+		<action name="listPatent" method="listPatentByMgr"
+			class="action.ListFileAction">
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/listPatent.jsp</result>
+		</action>
+		
+		<action name="viewListPatent" method="listPatentByMgr"
+			class="action.ListFileAction">
+			<result>patent.jsp</result>
+		</action>
+		
 		<action name="listPaper" method="listPaperByMgr"
 			class="action.ListFileAction">
 			<interceptor-ref name="basicStack"/>
@@ -252,8 +324,6 @@
 		
 		<action name="viewListPaper" method="listPaperByMgr"
 			class="action.ListFileAction">
-			<interceptor-ref name="basicStack"/>
-			<interceptor-ref name="mgrAuth"/>
 			<result>paper.jsp</result>
 		</action>
 		
@@ -329,6 +399,10 @@
 			<result>/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>
 		</action>
 		
+		<action name="addPatentmanage">
+			<result>/WEB-INF/content/manager/addPatent.jsp</result>
+		</action>
+		
 		<action name="empSendReport">
 			<result>/WEB-INF/content/employee/empSendReport.jsp</result>
 		</action>
@@ -341,9 +415,33 @@
 			<result>/WEB-INF/content/manager/addProjectMember.jsp</result>
 		</action>
 		
+		<action name="communication">
+			<result>communication.jsp</result>
+		</action>
+		
 		<action name="main">
 			<!-- 这里需要注意Result并不需要 '/'这个符号 否则会出现404这样的错误自己找了好久才找到 -->
 			<result>main.jsp</result>
 		</action>
+		
+		<action name="talents">
+			<!-- 这里需要注意Result并不需要 '/'这个符号 否则会出现404这样的错误自己找了好久才找到 -->
+			<result>rencaipeiyang.jsp</result>
+		</action>
+		<action name="index"
+			class="action.IndexAction">
+
+			<result>/realistic/index.jsp</result>
+		</action>
 	</package>
+	
+	<!--============================AJAX包========================-->
+<!--  
+ <package name="ajax" extends="json-default">
+      <action name="jsonListPaper" class="action.ListFileAction" method="listPaperByMgr">
+        
+        <result type="json"></result>
+      </action>
+  </package>-->
+
 </struts>

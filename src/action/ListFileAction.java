@@ -24,12 +24,22 @@ public class ListFileAction extends MgrBaseAction
 	private int pagesize;
 	//action封装交给jsp的信息，包括搜索到的report列表，pagebean中包含分页信息
 	private PageBean pb;
-
-
+	/*private List list;
+	private int pz;*/
 
 	public PageBean getPb() {
 		return pb;
 	}
+
+
+/*	public void setPz(int i) {
+		this.pz = i;
+	}
+
+
+	public void setList(List list) {
+		this.list = list;
+	}*/
 
 
 	public void setPb(PageBean pb) {
@@ -66,7 +76,7 @@ public class ListFileAction extends MgrBaseAction
 		this.pagesize = pagesize;
 	}
 
-
+	
 	public String listPaperByMgr()
 			throws Exception
 		{
@@ -82,9 +92,42 @@ public class ListFileAction extends MgrBaseAction
 			
 			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
 			
-			setPb(mgr.listPaperFile(emp.getId(), qr));
+			if(emp != null) {
+				setPb(mgr.listPaperFile(emp.getId(), qr));
+				
+			}else {
+				setPb(mgr.listPaperFile(mgrId, qr));
+			}
 			
+			/*setList(pb.getList());
+			setPz(pb.getPagesize());*/
+			return SUCCESS;
+		}
+	
+	public String listPatentByMgr()
+			throws Exception
+		{
+			QuerryInfo qr = new QuerryInfo();
+		
+			
+			ActionContext ctx = ActionContext.getContext();
 
+			qr.setCurrentpage(getCurrentpage());
+
+			qr.setPagesize(pagesize);
+			
+			
+			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+			
+			if(emp != null) {
+				setPb(mgr.listPatentFile(emp.getId(), qr));
+				
+			}else {
+				setPb(mgr.listPatentFile(mgrId, qr));
+			}
+			
+			/*setList(pb.getList());
+			setPz(pb.getPagesize());*/
 			return SUCCESS;
 		}
 	

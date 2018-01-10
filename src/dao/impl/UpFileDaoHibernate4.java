@@ -11,6 +11,8 @@ public class UpFileDaoHibernate4 extends BaseDaoHibernate4Impl<UpFile> implement
 	private static final int REPORTFILETYPE = 0;
 	private static final int PAPERFILETYPE = 3;
 	private static final int PROJECT_MEMBER_PIC_TYPE = 4;
+	private static final int PATENTTYPE = 5;
+	
 	
 	public List<UpFile> findByUserId(int userId,int fileType)
 	{
@@ -30,6 +32,11 @@ public class UpFileDaoHibernate4 extends BaseDaoHibernate4Impl<UpFile> implement
 	
 	public List<UpFile> findPaperByMgrIdByPage(int mgrId,int pageNo,int pageSize) {
 		return findByPage("select f from UpFile f where f.userId = ?0 and f.fileType=?1 order by f.id desc", pageNo,pageSize,mgrId,PAPERFILETYPE);
+
+	}
+	
+	public List<UpFile> findPatentByMgrIdByPage(int mgrId,int pageNo,int pageSize) {
+		return findByPage("select f from UpFile f where f.userId = ?0 and f.fileType=?1 order by f.id desc", pageNo,pageSize,mgrId,PATENTTYPE);
 
 	}
 	

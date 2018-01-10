@@ -47,13 +47,21 @@ public class UpFile implements Serializable{
 	@Column(name="file_uptime")
 	private String upTime;
 	
-	@Column(name="file_description")
+	@Column(name="file_description",length=1000)
 	private String description;
+	
+	@Column(name="file_url",length=500)
+	private String url;
+	
+	@Column(name="file_urlname")
+	private String urlName;
+	
+	@Column(name="file_num")
+	private String num;
 
 	
-	
 	public UpFile(Integer id, Integer userId, Integer fileType, Integer corrId, String uuidName, String fileName,
-			String savePath, String upTime, String description) {
+			String savePath, String upTime, String description, String url, String urlName, String num) {
 		this.id = id;
 		this.userId = userId;
 		this.fileType = fileType;
@@ -63,10 +71,46 @@ public class UpFile implements Serializable{
 		this.savePath = savePath;
 		this.upTime = upTime;
 		this.description = description;
+		this.url = url;
+		this.urlName = urlName;
+		this.num = num;
 	}
-	
-	
+
+
+	public String getNum() {
+		return num;
+	}
+
+
+	public void setNum(String num) {
+		this.num = num;
+	}
+
+
 	public UpFile() {
+
+	}
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+
+
+	public String getUrlName() {
+		return urlName;
+	}
+
+
+	public void setUrlName(String urlName) {
+		this.urlName = urlName;
 	}
 
 

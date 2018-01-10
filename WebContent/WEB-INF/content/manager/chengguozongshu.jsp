@@ -25,9 +25,10 @@
 	</td>
   </tr>
 		<tr>
-		<td width="94"><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
-		<td width="139"><div align="center"><a href="viewEmp.action">成果综述管理</a></div></td>
-		<td width="139"><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
+		<td><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
+		<td><div align="center"><a href="listAchievement.action">成果综述管理</a></div></td>
+		<td><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
+		<td><div align="center"><a href="listPatent.action?currentpage=1&pagesize=10">专利成果管理</a></div></td>
 		</tr>
 		<tr>
 		<td width="94"><div align="center"><a href="zengjiachengguomanage">增加成果</a></div></td>
@@ -41,9 +42,11 @@
 				 <tr class="pt11" height="32">
 			</s:else>
 			
-			<td width="200"><s:property value="description"/></td>
-			<td width="130"><a href="download.action?id=<s:property value="id"/>"><s:property value="fileName"/></a></td>
-			<td width="50"><a href="deletePaperFile?id=<s:property value="id"/>">删除</a></td>
+			<td width="35%"><s:property value="description"/></td>
+			<td width="20%"><s:property value="urlName"/></td>
+			<td width="25%"><a href="download.action?id=<s:property value="id"/>"><s:property value="fileName"/></a></td>
+			<td width="10%"><a href="toEditFile?id=<s:property value="id"/>">编辑</a></td>
+			<td width="10%"><a href="deletePaperFile?id=<s:property value="id"/>">删除</a></td>
 		  </tr>
 		</s:iterator>  
   <tr height="60">

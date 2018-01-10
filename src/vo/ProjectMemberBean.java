@@ -14,6 +14,7 @@ public class ProjectMemberBean implements Serializable{
 	private ProjectMember pm;
 	private UpFile upfile;
 	private String fsavePath;
+	private String pmIntroduction;
 	public ProjectMember getPm() {
 		return pm;
 	}
@@ -31,6 +32,12 @@ public class ProjectMemberBean implements Serializable{
 	}
 	public void setFsavePath(String fsavePath) {
 		this.fsavePath = fsavePath;
+	}
+	public String getPmIntroduction() {
+		return pmIntroduction;
+	}
+	public void setPmIntroduction(String pmIntroduction) {
+		this.pmIntroduction = pmIntroduction;
 	}
 
 

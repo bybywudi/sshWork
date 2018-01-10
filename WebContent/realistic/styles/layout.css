@@ -18,7 +18,7 @@ body{
 	padding:0;
 	font-size:12px;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color:#787878;
+	color:#707b84;
 	background-color:#E0E0E0;
 	}
 
@@ -30,7 +30,7 @@ body{
 .clear{clear:both;}
 br.clear{clear:both; margin-top:-15px;}
 
-a{outline:none; text-decoration:none; color:#A3443E; background-color:#E0E0E0;}
+a{outline:none; text-decoration:none; color:#409EFF; background-color:#E0E0E0;}
 
 .fl_left{float:left;}
 .fl_right{float:right;}
@@ -47,9 +47,25 @@ div.wrapper{
 	margin:0 0 1px 0;
 	text-align:left;
 	}
+	
+div.wrapper1{
+	position:relative;
+	display:block;
+	margin:0 auto 0;
+	width:960px;
+	text-align:left;
+}
+
+div.wrapper2{
+	position:relative;
+	display:block;
+	margin:0 auto 0;
+	width:960px;
+	text-align:center;
+}
 
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{
-	margin:0 0 15px 0;
+	margin:0 100px 15px 0;
 	padding:0;
 	font-size:20px;
 	font-weight:normal;
@@ -77,16 +93,17 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	padding:0;
 	list-style:none;
 	line-height:normal;
+	color:#292929;
 	}
 
 #header h1 a{
-	font-size:170px;
+	font-size:120px;
 	color:#292929;
 	background-color:#E0E0E0;
 	}
 
 #header p{
-	margin-top:-20px;
+	margin-top:20px;
 	font-size:20px;
 	color:#4A4A4A;
 	background-color:#E0E0E0;
@@ -136,8 +153,8 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 .whitebox{
 	padding:30px;
-	color:#999999;
-	background-color:#FFFFFF;
+	color:#303133;
+	background-color:#E0E0E0;
 	}
 
 .whitebox a{
@@ -212,8 +229,18 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	margin:0 0 10px 0;
 	padding:4px;
 	border:1px solid #999999;
+	
 	}
 
+.column div.imgholderright{
+	display:block;
+	width:260px;
+	margin:0 0 10px 0;
+	padding:4px;
+	border:1px solid #999999;
+	float:right 
+	}
+	
 .column .holder p.readmore{
 	display:block;
 	width:100%;
@@ -345,12 +372,20 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	margin:0;
 	padding:0;
 	}
+	
+#footer .latestgallery img{
+	display:block;
+	width:240px;
+	height:300px;
+	padding:0px;
+	border:0px solid #E0E0E0;
+	}
 
 #footer .latestgallery li{
 	display:block;
 	float:left;
-	width:80px;
-	height:80px;
+	width:360px;
+	height:360px;
 	margin:15px 17px 0 0;
 	padding:5px;
 	color:#333333;
@@ -361,7 +396,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #footer .footbox{
 	display:block;
 	float:left;
-	width:220px;
+	width:440px;
 	margin:0 0 0 50px;
 	padding:0;
 	}

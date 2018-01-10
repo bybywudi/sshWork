@@ -30,7 +30,7 @@
 	 <tr>
 
 	 <p>
-	 ÄÚÈÝ:<s:property value="reportBean.report.content" escape="false"/>
+	 ÄÚÈÝ:<s:property value="reportBean.relacedContent" escape="false"/>
 	 </p><br/>
 	 </tr>
 	<tr>

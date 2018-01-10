@@ -26,6 +26,11 @@ private SetMgrDao smDao;
 private ReportDao reportDao;
 private UpFileDao upFileDao;
 private ProjectMemberDao pmDao;
+private ArticleDao articleDao;
+
+public void setArticleDao(ArticleDao articleDao) {
+	this.articleDao = articleDao;
+}
 
 public void setPmDao(ProjectMemberDao pmDao) {
 	this.pmDao = pmDao;
@@ -326,10 +331,12 @@ public List<Report> getAllReportByTimeByPage(int mgrId,String time,int pageNo,in
 public ReportBean viewReport(int reportId) {
 	Report report = reportDao.get(Report.class, reportId);
 	UpFile upfile = upFileDao.findByReportId(reportId);
-	report.setContent(report.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
+	//report.setContent(report.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
 	
-	ReportBean reportBean = new ReportBean(report,upfile);
-	
+	ReportBean reportBean = new ReportBean();
+	reportBean.setRelacedContent(report.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
+	reportBean.setReport(report);
+	reportBean.setUpfile(upfile);
 	return reportBean;
 }
 
@@ -345,6 +352,33 @@ public UpFile findFile(int fileId) {
 public void addFile(UpFile file) {
 	file.setFileType(3);
 	upFileDao.save(file);
+}
+
+/**
+ * 管理员添加专利文件
+ */
+
+public void addPatentFile(UpFile file) {
+	file.setFileType(5);
+	upFileDao.save(file);
+	
+	
+}
+
+
+
+/**
+ * 列出老师所在实验室的专利成果列表
+ */
+
+public PageBean<UpFile> listPatentFile(int mgrId,QuerryInfo qr) {
+	PageBean pb = new PageBean();
+	pb.setList(upFileDao.findPatentByMgrIdByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)upFileDao.findPaperCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	
+	return pb;
 }
 
 /**
@@ -413,17 +447,21 @@ public List<ProjectMemberBean> listProjectMember(int mgrId) {
 		ProjectMemberBean pmb = new ProjectMemberBean();
 		upfile = upFileDao.findByProjectMemberId(pm.getId());
 		 
-		
+		 
 		fsavePath = upfile.getSavePath();
-		fsavePath = fsavePath.replaceAll("\\\\","/"); 
-		
-		fsavePath = fsavePath.substring(fsavePath.indexOf("/",fsavePath.indexOf("/")+1),fsavePath.length());
-
+		if(System.getProperty("file.separator").equals("/")) {
+			fsavePath = fsavePath.substring(fsavePath.indexOf("/",fsavePath.indexOf("/")+3),fsavePath.length());
+		}else {
+			fsavePath = fsavePath.replaceAll("\\\\","/"); 
+			
+			fsavePath = fsavePath.substring(fsavePath.indexOf("/",fsavePath.indexOf("/")+2),fsavePath.length());
+		}
 		fsavePath = fsavePath + "/" + upfile.getUuidName();
 
 		//upfile.setSavePath(savePath);这句话千万不能加，hibernate中的upfile在瞬态的时候使用set方法会改变数据库中的值
 		//pmb.setUpfile(upfile); 
 		//由于fsavePath一开始起名是savePath，在改变savePath的时候一直会出现hibernate向数据库保存该条记录的情况，改成不一样的名字就OK了
+		pmb.setPmIntroduction(pm.getIntroduction().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
 		pmb.setFsavePath(fsavePath);
 		
 		pmb.setPm(pm);
@@ -464,5 +502,72 @@ public void deletePaperFile(int fId) {
          file.delete();
      }
             
+}
+
+/**
+ * 编辑成果综述，如果没有成果综述，则创建新的
+ */
+public void editAchievement(int mgrId,String title,String content) {
+	Article a = articleDao.findAchievementByUserId(mgrId);
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	if(a == null) {
+		Article newa = new Article();
+		newa.setArticleType(0);
+		newa.setUserId(mgrId); 
+		newa.setTitle(title);
+		newa.setContent(content);
+		newa.setUpTime(df.format(System.currentTimeMillis()));
+		articleDao.save(newa);
+	}else {
+		a.setTitle(title);
+		a.setContent(content);
+		a.setUpTime(df.format(System.currentTimeMillis()));
+		articleDao.update(a);
+	}
+}
+
+/**
+ * 寻找该老师的成果综述文章
+ */
+public ArticleBean getAchievement(int mgrId) {
+	
+	Article a = articleDao.findAchievementByUserId(mgrId);
+	
+	if(a == null) {
+		System.out.println("null");
+		return null;
+		
+	}
+	
+	ArticleBean ab = new ArticleBean();
+	ab.setaTitle(a.getTitle());
+	ab.setaUpTime(a.getUpTime());
+	ab.setaContent(a.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
+	//ab.setaContent(a.getContent());
+	//System.out.println(ab.getaContent());
+	return ab;
+}
+
+
+/**
+ * 编辑文件属性
+ */
+public void updateFile(UpFile file) {
+	UpFile f = upFileDao.get(UpFile.class, file.getId());
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	if(f != null) {
+		f.setDescription(file.getDescription());
+		f.setUrl(file.getUrl());
+		f.setUrlName(file.getUrlName());
+		upFileDao.update(f);
+	}
+}
+
+/**
+ * 编辑文件属性
+ */
+public UpFile getFile(int id) {
+	return upFileDao.get(UpFile.class,id);
+
 }
 }

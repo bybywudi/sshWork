@@ -65,4 +65,10 @@ public interface MgrManager
 	List<ProjectMemberBean> listProjectMember(int mgrId) ;
 	void deleteProjectMember(int pmId) ;
 	void deletePaperFile(int fId);
+	void editAchievement(int mgrId,String title,String content);
+	ArticleBean getAchievement(int mgrId);
+	void addPatentFile(UpFile file);
+	PageBean<UpFile> listPatentFile(int mgrId,QuerryInfo qr);
+	void updateFile(UpFile file);
+	UpFile getFile(int id);
 }

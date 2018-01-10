@@ -24,6 +24,11 @@ private SetMgrDao smDao;
 private ReportDao reportDao;
 private UpFileDao upFileDao;
 private ProjectMemberDao pmDao;
+private ArticleDao articleDao;
+
+public void setArticleDao(ArticleDao articleDao) {
+	this.articleDao = articleDao;
+}
 
 public void setPmDao(ProjectMemberDao pmDao) {
 	this.pmDao = pmDao;
@@ -455,10 +460,13 @@ public UpFile getFileByReportId(int reportId) {
 
 public ReportBean viewReport(int reportId) {
 	Report report = reportDao.get(Report.class, reportId);
-	UpFile upfile = upFileDao.get(UpFile.class, upFileDao.findByReportId(reportId));
+	UpFile upfile = upFileDao.findByReportId(reportId);
+	//report.setContent(report.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
 	
-	ReportBean reportBean = new ReportBean(report,upfile);
-	
+	ReportBean reportBean = new ReportBean();
+	reportBean.setRelacedContent(report.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
+	reportBean.setReport(report);
+	reportBean.setUpfile(upfile);
 	return reportBean;
 }
 }

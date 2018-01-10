@@ -25,9 +25,10 @@
 	</td>
   </tr>
 		<tr>
-		<td width="94"><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
-		<td width="139"><div align="center"><a href="viewEmp.action">成果综述管理</a></div></td>
-		<td width="139"><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
+		<td><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
+		<td><div align="center"><a href="listAchievement.action">成果综述管理</a></div></td>
+		<td><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
+		<td><div align="center"><a href="listPatent.action?currentpage=1&pagesize=10">专利成果管理</a></div></td>
 		</tr>
 		<tr>
 		<td width="94"><div align="center"><a href="toaddProjectMember">增加项目成员</a></div></td>
@@ -36,8 +37,8 @@
 		 <s:iterator value="pms" status="index">  
 
 			<s:property value="pm.name"/><br/>
-			<s:property value="pm.introduction"/><br/>
-			<img src="/upfiles<s:property value="fsavePath"/>"/><br/>
+			<s:property value="pmIntroduction" escape="false"/><br/>
+			<img src="<s:property value="fsavePath"/>"/><br/>
 			<a href="deleteProjectMember?id=<s:property value="pm.id"/>">删除</a><br/>
 
 		</s:iterator>  
