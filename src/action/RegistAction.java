@@ -75,7 +75,7 @@ public class RegistAction extends EmpBaseAction
 					addActionMessage("该用户已存在！");
 					return ERROR;
 				}
-			}
+			}  
 			if(role.equals("student")) {
 				boolean result = mgr.registEmp(manager);
 				

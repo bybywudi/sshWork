@@ -25,8 +25,8 @@
 	<s:textfield name="manager.pass" label="密码"/>
 	<s:textfield name="manager.realname" label="真实姓名"/>
 	
-	<s:radio name="role" label="要注册的身份类型" labelposition="top" list="#{'学生':'student','老师':'teacher'}" listKey="value" listValue="key"></s:radio>
-	<!--<s:radio name="role" label="要注册的身份类型" labelposition="top" list="#{'学生':'student'}" listKey="value" listValue="key"></s:radio> -->
+	<%--<s:radio name="role" label="要注册的身份类型" labelposition="top" list="#{'学生':'student','老师':'teacher'}" listKey="value" listValue="key"></s:radio>--%>
+	<s:radio name="role" label="要注册的身份类型" labelposition="top" list="#{'学生':'student'}" listKey="value" listValue="key"></s:radio>
 	
 	<s:textfield name="vercode" label="验证码"/>
 	<tr><td colspan="2">

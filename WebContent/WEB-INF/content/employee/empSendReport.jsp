@@ -23,7 +23,7 @@
 <s:form action="sendReport"
 	enctype="multipart/form-data">
 	<s:textfield name="report.headline" label="报告标题"/>
-	<s:textarea name="report.content" label="报告内容"/>
+	<s:textarea name="report.content" cols="100" rows="10" label="报告内容"/>
 	添加文件（可选）：<br/>
 	<s:file name="upload" label="选择文件"/>
 	<s:fielderror/>

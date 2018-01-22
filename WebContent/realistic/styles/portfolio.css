@@ -34,6 +34,9 @@ Licence: <a href="#">Website Template Licence</a>
 	float:right;
 	width:500px;
 	}
+.portfolio .p{
+	font-size:20px;
+	}
 
 .portfolio .fl_right img{
 	display:block;

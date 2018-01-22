@@ -49,10 +49,54 @@
 			<td width="10%"><a href="deletePaperFile?id=<s:property value="id"/>">删除</a></td>
 		  </tr>
 		</s:iterator>  
+		
+		<s:if test="pb.list != null">
+			共<s:property value="pb.totalrecord"/>条记录,
+			共<s:property value="pb.totalpage"/>页,
+			当前第<s:property value="pb.currentpage"/>页
+		</s:if>
+		<s:if test="pb.currentpage != 1">
+			<a href="listPaper.action?currentpage=<s:property value="pb.previouspage"/>&pagesize=10">上一页&nbsp;</a>
+		</s:if>
+<%-- 		<s:iterator value="pb.pagebar" id="pagenum" status="st">   --%>
+<%-- 		 	<s:if test="pagenum == pb.currentpage">  --%>
+<%-- 				<font color="red"><s:property value="pagenum"/>&nbsp;</font> --%>
+<%-- 			</s:if> --%>
+<%-- 			<s:else> --%>
+<%-- 				<a href="listPatent.action?currentpage=<s:property value="pagenum"/>&pagesize=10"><s:property value="pagenum"/>&nbsp;</a> --%>
+<%-- 			</s:else> --%>
+<%-- 		<s:property value="pb.pagebar[st]"/> --%>
+<%-- 		</s:iterator> --%>
+		
+			<s:if test="pb.currentpage!=pb.totalpage && pb.totalrecord!=0">
+			<a href="listPaper.action?currentpage=<s:property value="pb.nextpage"/>&pagesize=10">下一页&nbsp;</a>
+			</s:if>
+ 				
+			<input type="text" id="pagenum" style="width: 30px">
+			<input type="button" value="GO"
+				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
   <tr height="60">
 	<td>&nbsp;</td>
   </tr>
 </table>
 <%@include file="../footer.jsp"%> 
+
+<script type="text/javascript">
+	
+	function gotopage(pagenum,oldvalue,totalpage){
+		if(pagenum<=0 || pagenum!=parseInt(pagenum)){
+			alert("请输入正整数");
+			document.getElementById("pagenum").value = oldvalue;
+		}else{
+			if(pagenum>totalpage){
+				alert("请输入页数范围内的数");
+				document.getElementById("pagenum").value = oldvalue;
+			}else{
+				//var pagesize = 10;			
+				window.location.href = 'listPaper.action?currentpage=' + pagenum + '&pagesize=10';
+			}
+		}
+}
+</script>
 </body>
 </html>

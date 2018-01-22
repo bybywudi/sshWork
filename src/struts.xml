@@ -12,6 +12,9 @@
 	<constant name="struts.multipart.maxSize" value="10000000"/>
 	<package name="default" extends="struts-default">
 		<interceptors>
+			<!-- 登录检查器 -->
+			<interceptor name="isLogin"	class=
+					"action.authority.LoginInterceptor"/>
 			<!-- 配置普通员工角色的权限检查拦截器 -->
 			<interceptor name="empAuth"	class=
 			"action.authority.EmpAuthorityInterceptor"/>
@@ -28,6 +31,7 @@
 				<interceptor-ref name="defaultStack"/>
 				<interceptor-ref name="mgrAuth"/>
 			</interceptor-stack>
+
 		</interceptors>
 
 		<!-- 定义全局Result映射 -->
@@ -57,32 +61,33 @@
 <!--============================下面是员工角色的Action========================-->
 		<action name="empViewReport" method="empViewReport"
 			class="action.ViewReportAction">
+			<interceptor-ref name="isLogin"/>
+			<interceptor-ref name="empStack"/>
 			<result>/WEB-INF/content/employee/viewReport.jsp</result>
 		</action>
 		
+		<action name="empViewMeeting" method="empViewMeeting"
+			class="action.ViewMeetingAction">
+			<interceptor-ref name="isLogin"/>
+			<interceptor-ref name="empStack"/>
+			<result>/WEB-INF/content/employee/viewMeeting.jsp</result>
+		</action>
+		
+		
 		<action name="sendReport" class="action.SendReportAction">
 			<!-- 动态设置Action的属性值 -->
+			<interceptor-ref name="empStack"/>
 			<param name="savePath">D:\upfiles</param>
-			
-		
 			<param name="lsavePath">/home/upfiles</param>
-		
-			
 			<!-- 配置Struts 2默认的视图页面 -->
 			<result>/WEB-INF/content/employee/empSendReport.jsp</result>
-			<result name="input">/WEB-INF/content/employee/empSendReport.jsp</result>	
-       
+			<result name="input">/WEB-INF/content/employee/empSendReport.jsp</result>
         </action>
         
         <action name="addChengguo" class="action.AddFileAction">
 			<!-- 动态设置Action的属性值 -->
-			  
 			<param name="savePath">D:\upfiles</param>
-			
-		 
 			<param name="lsavePath">/home/upfiles</param>
-		
-			
 			<!-- 配置Struts 2默认的视图页面 -->
 			<result name="input">/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>	
 			<result>/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>	
@@ -90,43 +95,72 @@
         
          <action name="addPatent" class="action.AddFileAction" method="addPatent">
 			<!-- 动态设置Action的属性值 -->
-			  
 			<param name="savePath">D:\upfiles</param>
-			
-		 
 			<param name="lsavePath">/home/upfiles</param>
-		
-			
 			<!-- 配置Struts 2默认的视图页面 -->
 			<result>/WEB-INF/content/manager/addPatent.jsp</result>	
         </action>
 		
 		 <action name="addProjectMember" class="action.AddFileAction" method="addProjectMember">
 			<!-- 动态设置Action的属性值 -->
-			  
 			<param name="savePath">D:\upfiles</param>
-			
-			
 			<param name="lsavePath">/home/upfiles</param>
-		
-			
 			<!-- 配置Struts 2默认的视图页面 -->
 			<result>/WEB-INF/content/manager/addProjectMember.jsp</result>	
         </action>
-		
+
+        <action name="*shareFile" class="action.AddFileAction" method="addSharedFile">
+            <!-- 动态设置Action的属性值 -->
+            <param name="savePath">D:\upfiles</param>
+            <param name="lsavePath">/home/upfiles</param>
+            <!-- 配置Struts 2默认的视图页面 -->
+            <result name="input">/WEB-INF/content/{1}/shareFile.jsp</result>
+            <result>/WEB-INF/content/{1}/shareFile.jsp</result>
+        </action>
+
 		<action name="listProjectMember"
 			class="action.ListProjectMemberAction">
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/manager/listProjectMember.jsp</result>
 		</action>
 		
+		<action name="reportToMeeting" class="action.AddFileAction" method="addMeetingFile">
+			<!-- 动态设置Action的属性值 -->
+			<param name="savePath">D:\upfiles</param>
+			<param name="lsavePath">/home/upfiles</param>
+			<!-- 配置Struts 2默认的视图页面 -->
+			<result>/WEB-INF/content/employee/reportToMeeting.jsp</result>
+			<result name="input">/WEB-INF/content/employee/reportToMeeting.jsp</result>
+        </action>
+		
+		<action name="empViewFile" method="empViewFile"
+			class="action.ViewFileAction">
+			<interceptor-ref name="isLogin"/>
+			<result>/WEB-INF/content/employee/viewMeetingReport.jsp</result>
+		</action>
+		
+		<action name="toreportToMeeting"
+			class="action.ToReportMeetingAction">
+			<result>/WEB-INF/content/employee/reportToMeeting.jsp</result>
+		</action>
+		
+		
 		<action name="viewListProjectMember"
 			class="action.ListProjectMemberAction">
+
 			<result>projectMember.jsp</result>
 		</action>
 		
 		<action name="listReportByEmpId" method="byEmpId"
 			class="action.ListReportAction">
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/employee/listReport.jsp</result>
+		</action>
+		
+		<action name="listReportByMgrId" method="byMgrId"
+			class="action.ListReportAction">
+			<interceptor-ref name="isLogin"/>
+			<result>/WEB-INF/content/manager/listReport.jsp</result>
 		</action>
 		
 		<action name="download" class="action.FileDownloadAction">
@@ -179,7 +213,7 @@
 			class="action.RegistAction">
 			<result name="input">/WEB-INF/content/regist.jsp</result>
 			<result name="error">/WEB-INF/content/regist.jsp</result>
-			<result name="success">/WEB-INF/content/regist.jsp</result>
+			<result name="success">/WEB-INF/content/login.jsp</result>
 		</action>
 		
 		<!-- 进入打卡 -->
@@ -240,8 +274,53 @@
 			<interceptor-ref name="empAuth"/>
 			<result>/WEB-INF/content/{1}/viewSalary.jsp</result>
 		 </action>
+		 
+		 <action name="*ListMeetingByMgrId"
+			class="action.ListMeetingAction" method="listMeetingByMgr">
+			 <interceptor-ref name="isLogin"/>
+			<interceptor-ref name="basicStack"/>
+			<result>/WEB-INF/content/{1}/listMeeting.jsp</result>
+		 </action>
+		 
+		 <action name="*ListMeetingBefore"
+			class="action.ListMeetingAction" method="listMeetingByMgrBeforeEndTime">
+			 <interceptor-ref name="isLogin"/>
+			<interceptor-ref name="basicStack"/>
+			<result>/WEB-INF/content/{1}/listNowMeeting.jsp</result>
+		 </action>
+
+		<action name="*sharedFile"
+				class="action.ListFileAction" method="listSharedFile">
+			<interceptor-ref name="isLogin"/>
+			<interceptor-ref name="basicStack"/>
+			<result>/WEB-INF/content/{1}/listSharedFile.jsp</result>
+		</action>
+
+        <action name="*userFile"
+                class="action.ListFileAction" method="listAllUserFile">
+			<interceptor-ref name="isLogin"/>
+            <interceptor-ref name="basicStack"/>
+            <result>/WEB-INF/content/{1}/listMyFile.jsp</result>
+        </action>
 
 <!--============================下面是经理角色的Action========================-->
+		<action name="mgrViewFile" method="mgrViewFile"
+			class="action.ViewFileAction">
+			<interceptor-ref name="isLogin"/>
+			<result>/WEB-INF/content/manager/viewMeetingReport.jsp</result>
+		</action>
+
+		<action name="mgrViewReport" method="mgrViewReport"
+			class="action.ViewReportAction">
+			<interceptor-ref name="isLogin"/>
+			<result>/WEB-INF/content/manager/viewReport.jsp</result>
+		</action>
+		
+		<action name="mgrViewMeeting" method="mgrViewMeeting"
+			class="action.ViewMeetingAction">
+			<interceptor-ref name="isLogin"/>
+			<result>/WEB-INF/content/manager/viewMeeting.jsp</result>
+		</action>
 		<!--  <action name="manageSetMgr"
 			class="action.AgreeSetMgrAction">
 			<interceptor-ref name="basicStack"/>
@@ -252,6 +331,7 @@
 		
 		<action name="toEditFile" method="toeditFile"
 			class="action.EditFileAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/toEditFile.jsp</result>
@@ -259,13 +339,23 @@
 		
 		<action name="editFile" method="editFile"
 			class="action.EditFileAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/toEditFile.jsp</result>
 		</action>
 		
+		<action name="listMessage" method="listMessage"
+			class="action.RealListArticleAction">
+			<interceptor-ref name="isLogin"/>
+			<interceptor-ref name="basicStack"/>
+			<interceptor-ref name="mgrAuth"/>
+			<result>/WEB-INF/content/manager/listMessage.jsp</result>
+		</action>
+		
 		<action name="editAchievement" method="editAchievement"
 			class="action.ArticleAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/editAchievement.jsp</result>
@@ -273,13 +363,13 @@
 		
 		<action name="toEditAchievement" method="listAchievement"
 			class="action.ListArticleAction">
-
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/manager/editAchievement.jsp</result>
 		</action>
 		
 		<action name="listAchievement" method="listAchievement"
 			class="action.ListArticleAction">
-
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/manager/listAchievement.jsp</result>
 		</action>
 		
@@ -291,6 +381,7 @@
 		<!-- 删除数据部分 -->
 		<action name="deleteProjectMember" method="deleteProjectMember"
 			class="action.DeleteAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/listProjectMember.jsp</result>
@@ -298,6 +389,7 @@
 		
 		<action name="deletePaperFile" method="deletePaperFile"
 			class="action.DeleteAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/chengguozongshu.jsp</result>
@@ -305,6 +397,7 @@
 		
 		<action name="listPatent" method="listPatentByMgr"
 			class="action.ListFileAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/listPatent.jsp</result>
@@ -317,6 +410,7 @@
 		
 		<action name="listPaper" method="listPaperByMgr"
 			class="action.ListFileAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/chengguozongshu.jsp</result>
@@ -329,6 +423,7 @@
 		
 		<action name="manageSetMgr"
 			class="action.SetMgrAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/setMgrApp.jsp</result>
@@ -336,6 +431,7 @@
 		
 		<action name="listAll"
 			class="action.ListSetMgrAppAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/setMgrApp.jsp</result>
@@ -351,6 +447,7 @@
 		<!-- 经理查看员工 -->
 		<action name="viewEmp"
 			class="action.ViewEmpAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/viewEmp.jsp</result>
@@ -359,6 +456,7 @@
 		<!-- 经理查看申请 -->
 		<action name="viewApp"
 			class="action.ViewAppAction">
+			<interceptor-ref name="isLogin"/>
 			<interceptor-ref name="basicStack"/>
 			<interceptor-ref name="mgrAuth"/>
 			<result>/WEB-INF/content/manager/viewApps.jsp</result>
@@ -369,7 +467,14 @@
 			<interceptor-ref name="mgrStack"/>
 			<result>/WEB-INF/content/manager/addEmp.jsp</result>
 		</action>
-
+		
+		<!-- 增加会议 -->
+		<action name="addMeeting" class="action.AddMeetingAction" method="addMeeting">
+			<interceptor-ref name="mgrStack"/>
+			<interceptor-ref name="isLogin"/>
+			<result>/WEB-INF/content/manager/addMeeting.jsp</result>
+		</action>
+		
 		<!-- 经理增加员工 -->
 		<action name="processAdd" 
 			class="action.AddEmpAction">
@@ -396,24 +501,44 @@
 		</action>
 		
 		<action name="zengjiachengguomanage">
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/manager/zengjiachengguomanage.jsp</result>
 		</action>
 		
 		<action name="addPatentmanage">
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/manager/addPatent.jsp</result>
 		</action>
 		
 		<action name="empSendReport">
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/employee/empSendReport.jsp</result>
 		</action>
 		
 		<action name="manageHtml">
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/manager/manageHtml.jsp</result>
 		</action>
 		
 		<action name="toaddProjectMember">
+			<interceptor-ref name="isLogin"/>
 			<result>/WEB-INF/content/manager/addProjectMember.jsp</result>
 		</action>
+		
+		<action name="toaddMeeting">
+			<interceptor-ref name="isLogin"/>
+			<result>/WEB-INF/content/manager/addMeeting.jsp</result>
+		</action>
+
+        <action name="managertoaddSharedFile">
+			<interceptor-ref name="isLogin"/>
+            <result>/WEB-INF/content/manager/shareFile.jsp</result>
+        </action>
+
+        <action name="employeetoaddSharedFile">
+			<interceptor-ref name="isLogin"/>
+            <result>/WEB-INF/content/employee/shareFile.jsp</result>
+        </action>
 		
 		<action name="communication">
 			<result>communication.jsp</result>
@@ -436,12 +561,15 @@
 	</package>
 	
 	<!--============================AJAX包========================-->
-<!--  
+ 
  <package name="ajax" extends="json-default">
-      <action name="jsonListPaper" class="action.ListFileAction" method="listPaperByMgr">
+      <action name="addMessage" class="action.JsonAction" method="addMessage">
         
-        <result type="json"></result>
+        <result type="json">
+        	<param name="noCache">true</param>
+        	<param name="contentType">text/html</param>
+        </result>
       </action>
-  </package>-->
+  </package>
 
 </struts>

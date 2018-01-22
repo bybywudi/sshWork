@@ -25,6 +25,7 @@ private ReportDao reportDao;
 private UpFileDao upFileDao;
 private ProjectMemberDao pmDao;
 private ArticleDao articleDao;
+private MeetingDao meetingDao;
 
 public void setArticleDao(ArticleDao articleDao) {
 	this.articleDao = articleDao;
@@ -79,6 +80,10 @@ public void setReportDao(ReportDao reportDao) {
 
 public void setUpFileDao(UpFileDao upFileDao) {
 	this.upFileDao = upFileDao;
+}
+
+public void setMeetingDao(MeetingDao meetingDao) {
+	this.meetingDao = meetingDao;
 }
 
 /**
@@ -468,5 +473,40 @@ public ReportBean viewReport(int reportId) {
 	reportBean.setReport(report);
 	reportBean.setUpfile(upfile);
 	return reportBean;
+}
+
+public PageBean<Meeting> getAllMeetingBeforeEndTime(int mgrId , QuerryInfo qr){
+	PageBean pb = new PageBean();
+	pb.setList(meetingDao.findByMgrIdAndEndTimeByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)meetingDao.findCountByMgrIdAndEndTime(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	return pb;
+}
+
+public PageBean<Meeting> getAllMeeting(int mgrId , QuerryInfo qr){
+	PageBean pb = new PageBean();
+	pb.setList(meetingDao.findByMgrIdByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)meetingDao.findCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	return pb;
+}
+
+public ListMeetingBean viewMeeting(int mId) {
+	ListMeetingBean lmb = new ListMeetingBean();
+	lmb.setMeeting(meetingDao.get(Meeting.class, mId));
+	
+	List<UpFile> list = upFileDao.findByMeetingId(mId);
+	List<UpFileBean> filelist = new ArrayList();
+	for(UpFile upfile : list) {
+		UpFileBean ufb = new UpFileBean();
+		ufb.setFile(upfile);
+		ufb.setUserName(empDao.findById(upfile.getUserId()).getRealname());
+		filelist.add(ufb);
+	}
+
+	lmb.setFiles(filelist);
+	return lmb;
 }
 }

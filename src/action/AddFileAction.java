@@ -44,7 +44,27 @@ public class AddFileAction extends MgrBaseAction
 	
 	private String urlName;
 
+	private int mid;
 	
+	private int id;
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getMid() {
+		return mid;
+	}
+
+	public void setMid(int mid) {
+		this.mid = mid;
+	}
+
 	public String getUrlName() {
 		return urlName;
 	}
@@ -155,7 +175,7 @@ public class AddFileAction extends MgrBaseAction
 			return SUCCESS;
 	}
 	
-	// 管理员添加论文成果
+	// 管理员添加专利成果
 	public String addPatent()
 		throws Exception
 	{		
@@ -167,6 +187,30 @@ public class AddFileAction extends MgrBaseAction
 			return SUCCESS;
 	}
 	
+	// 添加会议文件
+	public String addMeetingFile()
+		throws Exception
+	{		
+		if(System.getProperty("file.separator").equals("/")) {
+			setSavePath(getLsavePath());
+		}
+			mgr.addMeetingFile(upLoadFile());
+			addActionMessage("汇报成功");
+			return SUCCESS;
+	}
+
+	// 添加文件共享
+	public String addSharedFile()
+			throws Exception
+	{
+		if(System.getProperty("file.separator").equals("/")) {
+			setSavePath(getLsavePath());
+		}
+		mgr.addSharedFile(upLoadFile());
+		addActionMessage("添加成功");
+		return SUCCESS;
+	}
+
 	public String addProjectMember()
 			throws Exception
 		{		
@@ -192,20 +236,32 @@ public class AddFileAction extends MgrBaseAction
 	
 	private UpFile upLoadFile() throws IOException {
 		ActionContext ctx = ActionContext.getContext();
-		Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+		String level = (String)ctx.getSession()
+				.get(WebConstant.LEVEL);
+		UpFile upfile = new UpFile();
+		if(level != null && level.equals(WebConstant.EMP_LEVEL)){
+			Employee emp = (Employee) ctx.getSession().get(WebConstant.USERBEAN);
+			upfile.setUserId(emp.getId());
+		}else {
+			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+			upfile.setUserId(emp.getId());
+		}
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		
 		
 		
 
-			UpFile upfile = new UpFile();
+
 			upfile.setFileName(uploadFileName);
 			upfile.setUuidName(WebUtils.generateFilename(uploadFileName));
 			upfile.setDescription(description);
 			upfile.setSavePath(WebUtils.generateSavePath(savePath, uploadFileName));
-			upfile.setUserId(emp.getId());
+
 			upfile.setUrl(url);
 			upfile.setUrlName(urlName);
+			if(Integer.toString(id) != null) {
+				upfile.setCorrId(id);
+			}
 			//upfile.setFileType(3);
 			upfile.setUpTime(df.format(System.currentTimeMillis()));
 			

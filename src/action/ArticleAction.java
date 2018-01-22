@@ -59,4 +59,16 @@ public class ArticleAction extends MgrBaseAction
 		addActionMessage("修改成功");
 		return SUCCESS;
 	}
+	
+	public String addMessage()
+			throws Exception
+		{
+			Article a = new Article();
+			a.setContent(content);
+			a.setArticleType(1);
+			
+			mgr.addArticl(a);
+			addActionMessage("您以留言成功，请耐心等待回复");
+			return SUCCESS;
+		}
 }

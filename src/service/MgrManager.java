@@ -71,4 +71,16 @@ public interface MgrManager
 	PageBean<UpFile> listPatentFile(int mgrId,QuerryInfo qr);
 	void updateFile(UpFile file);
 	UpFile getFile(int id);
+	void addArticl(Article a);
+	PageBean<Article> listMessage(int mgrId,QuerryInfo qr);
+	PageBean<Report> getAllEmpReportByMgrIdByPage(int mgrId,QuerryInfo qr);
+	public void createMeeting(Meeting m);
+	public PageBean<Meeting> getAllMeetingBeforeEndTime(int mgrId , QuerryInfo qr);
+	public PageBean<Meeting> getAllMeeting(int mgrId , QuerryInfo qr);
+	ListMeetingBean viewMeeting(int mId) ;
+	void addMeetingFile(UpFile file) ;
+	PageBean<UpFileBean> listSharedFile(QuerryInfo qr);
+	void addSharedFile(UpFile file);
+	PageBean<UpFileBean> listUserFile(int userId,QuerryInfo qr);
+
 }

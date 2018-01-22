@@ -15,7 +15,7 @@ Date:
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-   <title>查看本部门全部员工</title>
+   <title>查看学生</title>
 </head>
 <body>
 <%@include file="../header.jsp"%>
@@ -28,12 +28,11 @@ Date:
 <table width="80%" border="0" align="center" 
 	cellspacing="1" bgcolor="#cccccc">
   <tr bgcolor="#e1e1e1" >
-	<td colspan="3" ><div class="mytitle">您正在查看部门的全部员工</div></td> 
+	<td colspan="3" ><div class="mytitle">查看学生</div></td> 
   </tr>
   <tr class="pt11" height="45">
-	<td><b>员工名</b></td>
+	<td><b>用户名</b></td>
 	<td><b>真实姓名</b></td>
-	<td><b>工资</b></td>
   </tr>
 <s:iterator value="emps" status="index">  
  	<s:if test="#index.odd == true"> 
@@ -44,7 +43,6 @@ Date:
 	</s:else>
 	<td><s:property value="empName"/></td>
 	<td><s:property value="empRealName"/></td>
-	<td><s:property value="amount"/></td>
   </tr>
 </s:iterator>  
 </table>

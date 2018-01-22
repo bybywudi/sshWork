@@ -66,7 +66,7 @@
       <div class="portfolio">
        
           <h2><s:property value="pm.name"/></h2>
-          <p><s:property value="pmIntroduction" escape="false"/></p>
+          <h2><s:property value="pmIntroduction" escape="false"/></h2>
       
         <div class="clear"></div>
       </div>

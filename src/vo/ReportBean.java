@@ -12,7 +12,16 @@ public class ReportBean implements Serializable{
 	private Report report;
 	private UpFile upfile;
 	private String relacedContent;
+	private String realName;
 	
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
 	public ReportBean() {
 	}
 	

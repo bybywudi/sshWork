@@ -27,6 +27,7 @@ private ReportDao reportDao;
 private UpFileDao upFileDao;
 private ProjectMemberDao pmDao;
 private ArticleDao articleDao;
+private MeetingDao meetingDao;
 
 public void setArticleDao(ArticleDao articleDao) {
 	this.articleDao = articleDao;
@@ -82,6 +83,12 @@ public void setReportDao(ReportDao reportDao) {
 
 public void setUpFileDao(UpFileDao upFileDao) {
 	this.upFileDao = upFileDao;
+}
+
+
+
+public void setMeetingDao(MeetingDao meetingDao) {
+	this.meetingDao = meetingDao;
 }
 
 public Manager login(String mgrName) {
@@ -308,12 +315,33 @@ public List<Report> getAllEmpReportByPage(int mgrId,int empId,int pageNo,int pag
 public PageBean<Report> getAllEmpReportByPage(int mgrId,int empId,QuerryInfo qr){
 	PageBean pb = new PageBean();
 	pb.setList(reportDao.findByMgrIdAndEmpIdByPage(mgrId, empId, qr.getCurrentpage(), qr.getPagesize()));
-	pb.setTotalrecord((int)reportDao.findCountByMgrId(mgrId));
+	pb.setTotalrecord((int)reportDao.findCountByMgrIdAndEmpId(mgrId,empId));
 	pb.setCurrentpage(qr.getCurrentpage());
 	pb.setPagesize(qr.getPagesize());
 	
 	return pb;
 }
+
+public PageBean<Report> getAllEmpReportByMgrIdByPage(int mgrId,QuerryInfo qr){
+	PageBean pb = new PageBean();
+	List<Report> rlist = reportDao.findByMgrIdByPage(mgrId,qr.getCurrentpage(), qr.getPagesize());
+	
+	List list = new ArrayList();
+	for(Report r : rlist) {
+		ReportBean rb = new ReportBean();
+		rb.setReport(r);
+		rb.setRealName(empDao.findById(r.getEmpId()).getRealname());
+		list.add(rb);
+	}
+	
+	pb.setList(list);
+	pb.setTotalrecord((int)reportDao.findCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+
+	return pb;
+}
+
 
 public UpFile getFileByReportId(int reportId) {
 	
@@ -365,6 +393,21 @@ public void addPatentFile(UpFile file) {
 	
 }
 
+/**
+ * 添加会议文件
+ */
+public void addMeetingFile(UpFile file) {
+	file.setFileType(1);
+	upFileDao.save(file);
+}
+
+/**
+ * 添加文件共享
+ */
+public void addSharedFile(UpFile file) {
+	file.setFileType(6);
+	upFileDao.save(file);
+}
 
 
 /**
@@ -374,7 +417,7 @@ public void addPatentFile(UpFile file) {
 public PageBean<UpFile> listPatentFile(int mgrId,QuerryInfo qr) {
 	PageBean pb = new PageBean();
 	pb.setList(upFileDao.findPatentByMgrIdByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
-	pb.setTotalrecord((int)upFileDao.findPaperCountByMgrId(mgrId));
+	pb.setTotalrecord((int)upFileDao.findPatentCountByMgrId(mgrId));
 	pb.setCurrentpage(qr.getCurrentpage());
 	pb.setPagesize(qr.getPagesize());
 	
@@ -570,4 +613,132 @@ public UpFile getFile(int id) {
 	return upFileDao.get(UpFile.class,id);
 
 }
+
+/**
+ * 增加一篇文章
+ */
+public void addArticl(Article a) {
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	a.setUpTime(df.format(System.currentTimeMillis()));
+	articleDao.save(a);
+}
+
+/**
+ * 列出所有留言
+ */
+public PageBean<Article> listMessage(int mgrId,QuerryInfo qr) {
+	PageBean pb = new PageBean();
+	pb.setList(articleDao.findMessageByMgrIdByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)articleDao.findMessageCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	
+	return pb;
+}
+
+
+public void createMeeting(Meeting m) {
+	meetingDao.save(m);
+}
+
+public PageBean<Meeting> getAllMeetingBeforeEndTime(int mgrId , QuerryInfo qr){
+	PageBean pb = new PageBean();
+	pb.setList(meetingDao.findByMgrIdAndEndTimeByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)meetingDao.findCountByMgrIdAndEndTime(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	return pb;
+}
+
+public PageBean<Meeting> getAllMeeting(int mgrId , QuerryInfo qr){
+	PageBean pb = new PageBean();
+	pb.setList(meetingDao.findByMgrIdByPage(mgrId, qr.getCurrentpage(), qr.getPagesize()));
+	pb.setTotalrecord((int)meetingDao.findCountByMgrId(mgrId));
+	pb.setCurrentpage(qr.getCurrentpage());
+	pb.setPagesize(qr.getPagesize());
+	return pb;
+}
+
+public ListMeetingBean viewMeeting(int mId) {
+	ListMeetingBean lmb = new ListMeetingBean();
+	lmb.setMeeting(meetingDao.get(Meeting.class, mId));
+	
+	List<UpFile> list = upFileDao.findByMeetingId(mId);
+	List<UpFileBean> filelist = new ArrayList();
+	for(UpFile upfile : list) {
+		UpFileBean ufb = new UpFileBean();
+		ufb.setFile(upfile);
+		ufb.setUserName(empDao.findById(upfile.getUserId()).getRealname());
+		filelist.add(ufb);
+	}
+
+	lmb.setFiles(filelist);
+	return lmb;
+}
+
+	/**
+	 * 列出共享文件列表
+	 */
+
+	public PageBean<UpFileBean> listSharedFile(QuerryInfo qr) {
+		PageBean pb = new PageBean();
+
+		List<UpFile> list = upFileDao.findSharedFileByMgrIdByPage(qr.getCurrentpage(),qr.getPagesize());
+		List<UpFileBean> filelist = new ArrayList();
+		for(UpFile upfile : list) {
+			UpFileBean ufb = new UpFileBean();
+			if(upfile.getFileType() == 1){
+				ufb.setSource("会议");
+			}
+			if(upfile.getFileType() == 3){
+				ufb.setSource("实验室论文");
+			}
+			if(upfile.getFileType() == 6){
+				ufb.setSource("文件分享");
+			}
+			ufb.setFile(upfile);
+			ufb.setUserName(empDao.findById(upfile.getUserId()).getRealname());
+			filelist.add(ufb);
+		}
+		pb.setList(filelist);
+		pb.setTotalrecord((int)upFileDao.findSharedFileCount());
+		pb.setCurrentpage(qr.getCurrentpage());
+		pb.setPagesize(qr.getPagesize());
+
+		return pb;
+	}
+
+	/**
+	 * 列出用户所有的文件
+	 */
+
+	public PageBean<UpFileBean> listUserFile(int userId,QuerryInfo qr) {
+		PageBean pb = new PageBean();
+		List<UpFile> list = upFileDao.findAllUserFileByPage(userId,qr.getCurrentpage(),qr.getPagesize());
+		List<UpFileBean> filelist = new ArrayList();
+		for(UpFile upfile : list) {
+			UpFileBean ufb = new UpFileBean();
+			if(upfile.getFileType() == 1){
+				ufb.setSource("会议");
+			}
+			if(upfile.getFileType() == 0){
+				ufb.setSource("单独报告");
+			}
+			if(upfile.getFileType() == 3){
+				ufb.setSource("实验室论文");
+			}
+			if(upfile.getFileType() == 6){
+				ufb.setSource("文件分享");
+			}
+			ufb.setFile(upfile);
+			//ufb.setUserName(empDao.findById(upfile.getUserId()).getRealname());
+			filelist.add(ufb);
+		}
+		pb.setList(filelist);
+		pb.setTotalrecord((int)upFileDao.findUserFilecount(userId));
+		pb.setCurrentpage(qr.getCurrentpage());
+		pb.setPagesize(qr.getPagesize());
+
+		return pb;
+	}
 }

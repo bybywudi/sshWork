@@ -12,4 +12,10 @@ public interface UpFileDao extends BaseDao<UpFile> {
 	long findPaperCountByMgrId(int mgrId);
 	UpFile findByProjectMemberId(int pmId);
 	List<UpFile> findPatentByMgrIdByPage(int mgrId,int pageNo,int pageSize);
+	long findPatentCountByMgrId(int mgrId);
+	List<UpFile> findByMeetingId(int mId);
+	List<UpFile> findSharedFileByMgrIdByPage(int pageNo,int pageSize);
+	long findSharedFileCount();
+	List<UpFile> findAllUserFileByPage(int userId,int pageNo,int pageSize);
+	long findUserFilecount(int userId);
 }

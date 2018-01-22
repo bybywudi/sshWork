@@ -29,6 +29,7 @@
 		<td><div align="center"><a href="listAchievement.action">成果综述管理</a></div></td>
 		<td><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
 		<td><div align="center"><a href="listPatent.action?currentpage=1&pagesize=10">专利成果管理</a></div></td>
+		<td><div align="center"><a href="listMessage.action?currentpage=1&pagesize=10">查看留言</a></div></td>
 		</tr>
   <tr height="60">
 	<td>&nbsp;</td>

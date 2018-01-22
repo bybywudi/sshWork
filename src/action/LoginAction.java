@@ -1,8 +1,5 @@
 package action;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.opensymphony.xwork2.*;
 import org.apache.struts2.interceptor.*;
@@ -54,6 +51,8 @@ public class LoginAction extends EmpBaseAction
 						, user);
 				ctx.getSession().put(WebConstant.LEVEL
 						, WebConstant.EMP_LEVEL);
+				ctx.getSession().put(WebConstant.USERID
+						, user.getId());
 				addActionMessage("您已经成功登录系统"); 
 				return EMP_RESULT;
 			}
@@ -67,6 +66,8 @@ public class LoginAction extends EmpBaseAction
 						, user);
 				ctx.getSession().put(WebConstant.LEVEL
 						, WebConstant.MGR_LEVEL);
+				ctx.getSession().put(WebConstant.USERID
+						, user.getId());
 				addActionMessage("您已经成功登录系统");
 				return MGR_RESULT;
 			}

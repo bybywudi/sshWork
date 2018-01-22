@@ -1,5 +1,7 @@
 package action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,15 @@ public class ListArticleAction extends MgrBaseAction
 
 	private int mgrId;
 	private ArticleBean articleBean;
+	private List alist;
+
+
+
+
+
+	public void setAlist(List alist) {
+		this.alist = alist;
+	}
 
 	public int getMgrId() {
 		return mgrId;
@@ -45,16 +56,30 @@ public class ListArticleAction extends MgrBaseAction
 		
 		ArticleBean arBean;
 		ActionContext ctx = ActionContext.getContext();
-
-		Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+		String level = (String)ctx.getSession()
+				.get(WebConstant.LEVEL);
+		
+		
+		if ( level != null && level.equals(WebConstant.MGR_LEVEL))
+		{
+			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+			if(emp != null) {
+				arBean = mgr.getAchievement(emp.getId());
+				setArticleBean(arBean);
+			}
+		}else {
+				arBean = mgr.getAchievement(mgrId);
+				setArticleBean(arBean);
+			  }
+		/*Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
 		
 		if(emp != null) {
 			arBean = mgr.getAchievement(emp.getId());
 		}else {
 			arBean = mgr.getAchievement(mgrId);
-		}
+		}*/
 		
-		setArticleBean(arBean);
+
 		
 		HttpServletRequest
 		 request = ServletActionContext.getRequest();
@@ -65,4 +90,23 @@ public class ListArticleAction extends MgrBaseAction
 		
 		return SUCCESS;
 	}
+	
+	/*public String listMessage()
+			throws Exception
+		{
+			
+			ArticleBean arBean;
+			ActionContext ctx = ActionContext.getContext();
+
+			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+			
+			if(emp != null) {
+				setAlist(mgr.listMessage(emp.getId()));
+			}else {
+				return ERROR;
+			}
+			setAlist(mgr.listMessage(emp.getId()));
+			System.out.println(alist.size());
+			return SUCCESS;
+		}*/
 }

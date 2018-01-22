@@ -301,24 +301,24 @@ h3 {
 
 .content_box .image_fl {
 	float: left;
-	margin: 3px 15px 0 0;
+	margin: 3px 0 0 0;
 }
 
 .content_box .image_fl img{
 	display:block;
-	width:350px;
+	width:330px;
 	height:300px;
 	padding:0px;
 }
 
 .content_box .section_w250 {
-	width: 160px;
+	width: 140px;
 }
 
 .list_01 {
 	margin: 0 0 0 20px;
 	padding: 0;
-	/*list-style:none;*/
+	list-style:none;
 }
 
 .list_01 li {

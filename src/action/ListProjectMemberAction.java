@@ -44,14 +44,28 @@ public class ListProjectMemberAction extends MgrBaseAction
 		{
 
 			ActionContext ctx = ActionContext.getContext();
-
-			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+			String level = (String)ctx.getSession()
+					.get(WebConstant.LEVEL);
+			
+			if ( level != null && level.equals(WebConstant.MGR_LEVEL))
+			{
+				Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+				if(emp != null) {
+					setPms(mgr.listProjectMember(emp.getId()));
+				}
+			}else {
+					setPms(mgr.listProjectMember(mgrId));
+				  }
+			
+			/*Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
 			
 			if(emp != null) {
 				setPms(mgr.listProjectMember(emp.getId()));
 			}else {
 				setPms(mgr.listProjectMember(mgrId));
-			}
+			}*/
+			
+			
 			
 			
 			return SUCCESS;

@@ -15,7 +15,7 @@ Date:
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>员工首页</title>
+<title>学生首页</title>
 </head>
 <body>
 <%@include file="../header.jsp"%> 

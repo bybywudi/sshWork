@@ -88,4 +88,24 @@ public class ListReportAction extends MgrBaseAction
 			return SUCCESS;
 		}
 	
+	public String byMgrId()
+			throws Exception
+		{
+			QuerryInfo qr = new QuerryInfo();
+		
+			
+			ActionContext ctx = ActionContext.getContext();
+
+			qr.setCurrentpage(getCurrentpage());
+
+			qr.setPagesize(pagesize);
+			
+			
+			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+			
+			setPb(mgr.getAllEmpReportByMgrIdByPage(emp.getId(), qr));
+			
+
+			return SUCCESS;
+		}
 }

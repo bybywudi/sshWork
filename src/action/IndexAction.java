@@ -88,8 +88,8 @@ public class IndexAction extends MgrBaseAction
 		{
 
 			ActionContext ctx = ActionContext.getContext();
-
-			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+			String level = (String)ctx.getSession()
+					.get(WebConstant.LEVEL);
 			
 			currentpage = 1;
 			pagesize = 4;
@@ -99,21 +99,22 @@ public class IndexAction extends MgrBaseAction
 			HttpServletRequest
 			 request = ServletActionContext.getRequest();
 
+			/*setPbpaper(mgr.listPaperFile(mgrId, qr));
+			arBean = mgr.getAchievement(mgrId);*/
+		
 
-			
+
+		if ( level != null && level.equals(WebConstant.MGR_LEVEL))
+		{
+			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
 			if(emp != null) {
 				setPbpaper(mgr.listPaperFile(emp.getId(), qr));
-				/*setPms(mgr.listProjectMember(emp.getId()));
-				
-				setPbpatent(mgr.listPatentFile(emp.getId(), qr));*/
 				arBean = mgr.getAchievement(emp.getId());
-			}else {
-				setPbpaper(mgr.listPaperFile(mgrId, qr));
-				/*setPms(mgr.listProjectMember(mgrId));
-				
-				setPbpatent(mgr.listPatentFile(mgrId, qr));*/
-				arBean = mgr.getAchievement(mgrId);
 			}
+		}else {
+				setPbpaper(mgr.listPaperFile(mgrId, qr));
+				arBean = mgr.getAchievement(mgrId);
+			  }
 			
 			content = arBean.getaContent();
 			request.setAttribute("content",

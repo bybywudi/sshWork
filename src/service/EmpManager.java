@@ -118,5 +118,9 @@ package service;
 		PageBean<Report> getAllEmpReportByPage(int mgrId,int empId,QuerryInfo qr);
 		UpFile getFileByReportId(int reportId);
 		ReportBean viewReport(int reportId);
+		public PageBean<Meeting> getAllMeetingBeforeEndTime(int mgrId , QuerryInfo qr);
+		public PageBean<Meeting> getAllMeeting(int mgrId , QuerryInfo qr);
+		ListMeetingBean viewMeeting(int mId) ;
+
 	}
 

@@ -13,6 +13,9 @@ public interface WebConstant
 	String USERNAME = "username";
 	String USER="user";
 	String REALNAME = "realname";
-	
 	String USERBEAN = "userbean";
+	String USERID = "userId";
+
+
+
 }

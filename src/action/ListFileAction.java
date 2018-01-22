@@ -84,12 +84,26 @@ public class ListFileAction extends MgrBaseAction
 		
 			
 			ActionContext ctx = ActionContext.getContext();
+			
+			String level = (String)ctx.getSession()
+					.get(WebConstant.LEVEL);
+			
+	
 
 			qr.setCurrentpage(getCurrentpage());
 
 			qr.setPagesize(pagesize);
 			
-			
+			if ( level != null && level.equals(WebConstant.MGR_LEVEL))
+			{
+				Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+				if(emp != null) {
+					setPb(mgr.listPaperFile(emp.getId(), qr));
+				}
+			}else {
+					setPb(mgr.listPaperFile(mgrId, qr));
+				  }
+			/*
 			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
 			
 			if(emp != null) {
@@ -97,7 +111,7 @@ public class ListFileAction extends MgrBaseAction
 				
 			}else {
 				setPb(mgr.listPaperFile(mgrId, qr));
-			}
+			}*/
 			
 			/*setList(pb.getList());
 			setPz(pb.getPagesize());*/
@@ -111,12 +125,24 @@ public class ListFileAction extends MgrBaseAction
 		
 			
 			ActionContext ctx = ActionContext.getContext();
+			String level = (String)ctx.getSession()
+					.get(WebConstant.LEVEL);
+			
 
 			qr.setCurrentpage(getCurrentpage());
 
 			qr.setPagesize(pagesize);
 			
-			
+			if ( level != null && level.equals(WebConstant.MGR_LEVEL))
+			{
+				Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+				if(emp != null) {
+					setPb(mgr.listPatentFile(emp.getId(), qr));
+				}
+			}else {
+					setPb(mgr.listPatentFile(mgrId, qr));
+				  }
+			/*
 			Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
 			
 			if(emp != null) {
@@ -124,11 +150,45 @@ public class ListFileAction extends MgrBaseAction
 				
 			}else {
 				setPb(mgr.listPatentFile(mgrId, qr));
-			}
+			}*/
 			
 			/*setList(pb.getList());
 			setPz(pb.getPagesize());*/
 			return SUCCESS;
 		}
+
+	public String listSharedFile()
+			throws Exception
+	{
+		QuerryInfo qr = new QuerryInfo();
+
+		ActionContext ctx = ActionContext.getContext();
+
+		qr.setCurrentpage(getCurrentpage());
+
+		qr.setPagesize(pagesize);
+
+		setPb(mgr.listSharedFile(qr));
+
+		return SUCCESS;
+	}
+
+	public String listAllUserFile()
+			throws Exception
+	{
+		QuerryInfo qr = new QuerryInfo();
+
+		ActionContext ctx = ActionContext.getContext();
+
+		qr.setCurrentpage(getCurrentpage());
+
+		qr.setPagesize(pagesize);
+
+		int userId = (int)ctx.getSession().get(WebConstant.USERID);
+
+		setPb(mgr.listUserFile(userId,qr));
+
+		return SUCCESS;
+	}
 	
 }

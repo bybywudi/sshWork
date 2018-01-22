@@ -127,7 +127,7 @@ public class BaseDaoHibernate4Impl<T> implements BaseDao<T>
 			.setFirstResult((pageNo - 1) * pageSize)
 			.setMaxResults(pageSize)
 			.list();
-	}
+	} 
 	/**
 	 * 使用hql 语句进行分页查询操作
 	 * @param hql 需要查询的hql语句

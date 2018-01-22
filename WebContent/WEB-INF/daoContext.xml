@@ -12,7 +12,7 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close"
 		p:driverClass="com.mysql.jdbc.Driver"
-		p:jdbcUrl="jdbc:mysql://localhost:3308/hrSystem"
+		p:jdbcUrl="jdbc:mysql://localhost:3306/hrSystem"
 		p:user="root"
 		p:password="by1994313bY@."
 		p:maxPoolSize="200"
@@ -40,6 +40,7 @@
 				<value>domain.UpFile</value>
 				<value>domain.ProjectMember</value>
 				<value>domain.Article</value>
+				<value>domain.Meeting</value>
 			</list>
 		</property>
 		<!-- 定义Hibernate的SessionFactory的属性 -->
@@ -108,5 +109,9 @@
 
 <bean id="articleDao"
 	class="dao.impl.ArticleDaoHibernate4"
+	parent="daoTemplate"/>
+	
+<bean id="meetingDao"
+	class="dao.impl.MeetingDaoHibernate4"
 	parent="daoTemplate"/>
 </beans>

@@ -24,7 +24,8 @@
 		p:reportDao-ref="reportDao"
 		p:upFileDao-ref="upFileDao"
 		p:pmDao-ref="pmDao"
-		p:articleDao-ref="articleDao"			/>
+		p:articleDao-ref="articleDao"	
+		p:meetingDao-ref="meetingDao"		/>
 		
 	<!-- 定义两个业务逻辑组件，继承业务逻辑组件的模板 -->
 	<bean id="empManager"
