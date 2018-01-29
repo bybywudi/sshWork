@@ -602,6 +602,7 @@ public void updateFile(UpFile file) {
 		f.setDescription(file.getDescription());
 		f.setUrl(file.getUrl());
 		f.setUrlName(file.getUrlName());
+		f.setFileName(file.getFileName());
 		upFileDao.update(f);
 	}
 }
@@ -674,6 +675,19 @@ public ListMeetingBean viewMeeting(int mId) {
 
 	lmb.setFiles(filelist);
 	return lmb;
+}
+	/**
+	 * 通过ID寻找会议
+	 */
+public Meeting getMeetingById(int id){
+	return meetingDao.get(Meeting.class,id);
+}
+
+	/**
+	 * update会议
+	 */
+public void updateMeeting(Meeting meeting){
+	meetingDao.update(meeting);
 }
 
 	/**

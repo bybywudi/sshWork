@@ -24,21 +24,15 @@
 </s:if>
 	</td>
   </tr>
-		<tr>
-		<td><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
-		<td><div align="center"><a href="listAchievement.action">成果综述管理</a></div></td>
-		<td><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
-		<td><div align="center"><a href="listPatent.action?currentpage=1&pagesize=10">专利成果管理</a></div></td>
-		</tr>
 <tr>
 <td>
 <s:actionerror cssClass="error"/>
 <div align="center">
-<s:form action="editFile">
-	<s:textarea name="description" value="%{upfile.description}" label="文件标题"/>
-	<s:textarea name="url" value="%{upfile.url}" label="文件连接"/>
-	<s:textarea name="urlName" value="%{upfile.urlName}" label="给这个链接起个名字"/>
-	<s:hidden name="id" value="%{upfile.id}"/>
+<s:form action="editMeeting">
+	<s:textarea name="headline" value="%{meeting.headline}" label="会议标题"/>
+	<s:textarea name="content" value="%{meeting.content}" label="会议内容"/>
+	<s:textarea name="studentName" value="%{meeting.studentName}" label="报告人"/>
+	<s:hidden name="id" value="%{meeting.id}"/>
 	<s:submit value="修改"/>
 </s:form>
 </div>

@@ -82,5 +82,7 @@ public interface MgrManager
 	PageBean<UpFileBean> listSharedFile(QuerryInfo qr);
 	void addSharedFile(UpFile file);
 	PageBean<UpFileBean> listUserFile(int userId,QuerryInfo qr);
+	public Meeting getMeetingById(int id);
+	void updateMeeting(Meeting meeting);
 
 }

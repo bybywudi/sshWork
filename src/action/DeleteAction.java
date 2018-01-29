@@ -65,6 +65,23 @@ public class DeleteAction extends MgrBaseAction
 
 			return SUCCESS;
 		}
+
+	public String empdelete()
+			throws Exception
+	{
+
+		ActionContext ctx = ActionContext.getContext();
+
+		Employee emp = (Employee) ctx.getSession().get(WebConstant.USERBEAN);
+
+		if(emp != null) {
+			mgr.deletePaperFile(id);
+			addActionMessage("删除成功");
+		}
+
+
+		return SUCCESS;
+	}
 	
 }
 

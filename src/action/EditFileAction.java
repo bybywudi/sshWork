@@ -20,6 +20,15 @@ public class EditFileAction extends MgrBaseAction
 	private String description;
 	private String url;
 	private String urlName;
+	private String fileName;
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 	public int getId() {
 		return id;
@@ -76,15 +85,29 @@ public class EditFileAction extends MgrBaseAction
 	{
 
 		ActionContext ctx = ActionContext.getContext();
+        String level = (String) ctx.getSession().get(WebConstant.LEVEL);
 
-		Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
-		
-		if(emp != null) {
-			setUpfile(mgr.getFile(id));
-			return SUCCESS;
-		}else {
-			return ERROR;
-		}
+        if(level.equals(WebConstant.MGR_LEVEL)) {
+            Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+            if (emp != null) {
+                setUpfile(mgr.getFile(id));
+                return SUCCESS;
+            } else {
+                return ERROR;
+            }
+        }
+
+        if(level.equals(WebConstant.EMP_LEVEL)) {
+            Employee emp = (Employee) ctx.getSession().get(WebConstant.USERBEAN);
+            if (emp != null) {
+                setUpfile(mgr.getFile(id));
+                return SUCCESS;
+            } else {
+                return ERROR;
+            }
+        }
+
+        return ERROR;
 
 	}
 	
@@ -94,21 +117,42 @@ public class EditFileAction extends MgrBaseAction
 	{
 
 		ActionContext ctx = ActionContext.getContext();
+        String level = (String) ctx.getSession().get(WebConstant.LEVEL);
+        if(level.equals(WebConstant.MGR_LEVEL)){
+            Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
+            if(emp != null) {
+                UpFile file = new UpFile();
+                file.setId(id);
+                file.setDescription(description);
+                file.setUrl(url);
+                file.setUrlName(urlName);
+                file.setFileName(fileName);
+                mgr.updateFile(file);
+                addActionMessage("修改成功");
+                return SUCCESS;
+            }else {
+                return ERROR;
+            }
+        }
+        if(level.equals(WebConstant.EMP_LEVEL)){
+            Employee emp = (Employee) ctx.getSession().get(WebConstant.USERBEAN);
+            if(emp != null) {
+                UpFile file = new UpFile();
+                file.setId(id);
+                file.setDescription(description);
+                file.setUrl(url);
+                file.setUrlName(urlName);
+                file.setFileName(fileName);
 
-		Manager emp = (Manager) ctx.getSession().get(WebConstant.USERBEAN);
-		
-		if(emp != null) {
-			UpFile file = new UpFile();
-			file.setId(id);
-			file.setDescription(description);
-			file.setUrl(url);
-			file.setUrlName(urlName);
-			mgr.updateFile(file);
-			addActionMessage("修改成功");
-			return SUCCESS;
-		}else {
-			return ERROR;
-		}
+                mgr.updateFile(file);
+                addActionMessage("修改成功");
+                return SUCCESS;
+            }else {
+                return ERROR;
+            }
+        }
+        return ERROR;
+
 
 	}
 }

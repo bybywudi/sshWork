@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@include file="../header.jsp"%> 
-<%@include file="mgrheader.jsp"%> 
+<%@include file="empheader.jsp"%>
 <table width="960" align="center" 
 	background="images/bodybg.jpg">
   <tr height="60">
@@ -24,20 +24,14 @@
 </s:if>
 	</td>
   </tr>
-		<tr>
-		<td><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
-		<td><div align="center"><a href="listAchievement.action">成果综述管理</a></div></td>
-		<td><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
-		<td><div align="center"><a href="listPatent.action?currentpage=1&pagesize=10">专利成果管理</a></div></td>
-		</tr>
 <tr>
 <td>
 <s:actionerror cssClass="error"/>
 <div align="center">
-<s:form action="editFile">
-	<s:textarea name="description" value="%{upfile.description}" label="文件标题"/>
-	<s:textarea name="url" value="%{upfile.url}" label="文件连接"/>
-	<s:textarea name="urlName" value="%{upfile.urlName}" label="给这个链接起个名字"/>
+<s:form action="empeditFile">
+	<s:textarea name="description" value="%{upfile.description}" label="文件描述"/>
+	<s:textarea name="url" value="%{upfile.url}" label="文件标题"/>
+    <s:textarea name="fileName" value="%{upfile.fileName}" label="文件名（必须加后缀，如.txt）"/>
 	<s:hidden name="id" value="%{upfile.id}"/>
 	<s:submit value="修改"/>
 </s:form>
