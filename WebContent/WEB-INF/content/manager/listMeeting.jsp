@@ -1,17 +1,19 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-   <title>²é¿´»áÒé</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>æŸ¥çœ‹ä¼šè®®</title>
 </head>
 <body>
-<%@include file="../header.jsp"%>
-<%@include file="mgrheader.jsp"%>
-<table width="960" align="center"
-	background="${pageContext.request.contextPath}/images/bodybg.jpg">
+<%@include file="mgrUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
 <tr>
 <td>
 <br>
@@ -20,24 +22,23 @@
 	<s:actionmessage/>
 </div>
 </s:if>
-<table width="80%" border="0" align="center" 
-	cellspacing="1" bgcolor="#cccccc">
-  <tr bgcolor="#e1e1e1" >
-	<td colspan="3" ><div class="mytitle">ÄúÕýÔÚ²é¿´»áÒé</div></td> 
-  </tr>
-  <tr class="pt11" height="45">
-	<td><b><a href="toaddMeeting">´´½¨»áÒé</a></b></td>
+<table class="layui-table">
+<%--  <tr bgcolor="#e1e1e1" >
+	<td colspan="3" ><div class="mytitle">æ‚¨æ­£åœ¨æŸ¥çœ‹ä¼šè®®</div></td> 
+  </tr>--%>
+  <%--<tr class="pt11" height="45">
+	<td><b><a href="toaddMeeting">åˆ›å»ºä¼šè®®</a></b></td>
   </tr>
    <tr class="pt11" height="45">
-	<td><b><a href="managerListMeetingByMgrId.action?currentpage=1&pagesize=10">ÀúÊ·»áÒé</a></b></td>
-	<td><b><a href="managerListMeetingBefore.action?currentpage=1&pagesize=10">½øÐÐÖÐµÄ»áÒé</a></b></td>
-  </tr>
+	<td><b><a href="managerListMeetingByMgrId.action?currentpage=1&pagesize=10">åŽ†å²ä¼šè®®</a></b></td>
+	<td><b><a href="managerListMeetingBefore.action?currentpage=1&pagesize=10">è¿›è¡Œä¸­çš„ä¼šè®®</a></b></td>
+  </tr>--%>
   <tr class="pt11" height="45">
-	<td><b>»áÒé±êÌâ</b></td>
-	<td><b>±¨¸æÈË</b></td>
-	<td><b>¿ªÊ¼Ê±¼ä</b></td>
-	<td><b>½áÊøÊ±¼ä</b></td>
-	<td><b>²Ù×÷</b></td>
+	<td><b>ä¼šè®®æ ‡é¢˜</b></td>
+	<td><b>æŠ¥å‘Šäºº</b></td>
+	<td><b>å¼€å§‹æ—¶é—´</b></td>
+	<td><b>ç»“æŸæ—¶é—´</b></td>
+	<td><b>æ“ä½œ</b></td>
   </tr>
 <s:iterator value="pb.list" status="index">  
  	<s:if test="#index.odd == true"> 
@@ -50,17 +51,17 @@
 	<td><s:property value="studentName"/></td>
 	<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingStartTime"/></td>
 	<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingEndTime"/></td>
-	<td><a href="toEditMeeting?id=<s:property value="id"/>">±à¼­</a></td>
-	<td><a href="mgrViewMeeting?id=<s:property value="id"/>">²é¿´</a></td>
+	<td><a href="toEditMeeting?id=<s:property value="id"/>">ç¼–è¾‘</a></td>
+	<td><a href="mgrViewMeeting?id=<s:property value="id"/>">æŸ¥çœ‹</a></td>
   </tr>
 </s:iterator>  
 <s:if test="pb.list != null">
-			¹²<s:property value="pb.totalrecord"/>Ìõ¼ÇÂ¼,
-			¹²<s:property value="pb.totalpage"/>Ò³,
-			µ±Ç°µÚ<s:property value="pb.currentpage"/>Ò³
+			å…±<s:property value="pb.totalrecord"/>æ¡è®°å½•,
+			å…±<s:property value="pb.totalpage"/>é¡µ,
+			å½“å‰ç¬¬<s:property value="pb.currentpage"/>é¡µ
 		</s:if>
 		<s:if test="pb.currentpage != 1">
-			<a href="managerListMeetingByMgrId.action?currentpage=<s:property value="pb.previouspage"/>&pagesize=10">ÉÏÒ»Ò³&nbsp;</a>
+			<a href="managerListMeetingByMgrId.action?currentpage=<s:property value="pb.previouspage"/>&pagesize=10">ä¸Šä¸€é¡µ&nbsp;</a>
 		</s:if>
 <%-- 		<s:iterator value="pb.pagebar" id="pagenum" status="st">   --%>
 <%-- 		 	<s:if test="pagenum == pb.currentpage">  --%>
@@ -73,7 +74,7 @@
 <%-- 		</s:iterator> --%>
 		
 			<s:if test="pb.currentpage!=pb.totalpage && pb.totalrecord!=0">
-			<a href="managerListMeetingByMgrId.action?currentpage=<s:property value="pb.nextpage"/>&pagesize=10">ÏÂÒ»Ò³&nbsp;</a>
+			<a href="managerListMeetingByMgrId.action?currentpage=<s:property value="pb.nextpage"/>&pagesize=10">ä¸‹ä¸€é¡µ&nbsp;</a>
 			</s:if>
  				
 			<input type="text" id="pagenum" style="width: 30px">
@@ -88,11 +89,11 @@
 	
 	function gotopage(pagenum,oldvalue,totalpage){
 		if(pagenum<=0 || pagenum!=parseInt(pagenum)){
-			alert("ÇëÊäÈëÕýÕûÊý");
+			alert("è¯·è¾“å…¥æ­£æ•´æ•°");
 			document.getElementById("pagenum").value = oldvalue;
 		}else{
 			if(pagenum>totalpage){
-				alert("ÇëÊäÈëÒ³Êý·¶Î§ÄÚµÄÊý");
+				alert("è¯·è¾“å…¥é¡µæ•°èŒƒå›´å†…çš„æ•°");
 				document.getElementById("pagenum").value = oldvalue;
 			}else{
 				//var pagesize = 10;			

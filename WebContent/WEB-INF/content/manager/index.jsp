@@ -1,5 +1,5 @@
 <%--
-网站: <a href="http://www.crazyit.org">疯狂Java联盟</a>
+缃戠珯: <a href="http://www.crazyit.org">鐤媯Java鑱旂洘</a>
 author  yeeku.H.lee kongyeeku@163.com
 version  1.0
 Copyright (C), 2001-2012, yeeku.H.Lee
@@ -8,20 +8,22 @@ Program Name:
 Date: 
 --%>
 
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>老师首页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>鑰佸笀棣栭〉</title>
 </head>
 <body>
-<%@include file="../header.jsp"%> 
-<%@include file="mgrheader.jsp"%> 
-<table width="960" align="center" 
-	background="images/bodybg.jpg">
+<%@include file="mgrUI.jsp"%>
+<div class="layui-body" id="container">
+    <table class="layui-table" lay-filter="test" id="test">
+        <tr><br/></tr>
+        <tr><br/></tr>
+        <tr><br/></tr>
   <tr height="60">
 	<td>&nbsp;</td>
   </tr>
@@ -39,12 +41,12 @@ Date:
   </tr>
   <tr>
 	<td><s:property value="#session.userbean.realname"/>
-		，欢迎您，您是老师！</td>
+		锛屾杩庢偍锛屾偍鏄�佸笀锛�</td>
   </tr>
   <tr height="60">
 	<td>&nbsp;</td>
   </tr>
 </table>
-<%@include file="../footer.jsp"%> 
+</div>
 </body>
 </html>

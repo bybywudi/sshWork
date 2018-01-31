@@ -1,16 +1,19 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>查看报告</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>鏌ョ湅鎶ュ憡</title>
 <s:head/>
 </head>
 <body>
-<%@include file="mgrheader.jsp"%>
-<table width="960" align="center"
-	background="${pageContext.request.contextPath}/images/bodybg.jpg">
+<%@include file="mgrUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
 <tr>
 <td>
 <s:if test="actionMessages.size()>0">
@@ -22,19 +25,19 @@
 	<table width="80%" border="0" align="center" 
 		cellspacing="1" bgcolor="#cccccc">
 	  <tr bgcolor="#e1e1e1" >
-		<td colspan="3" ><div class="mytitle">查看报告</div></td> 
+		<td colspan="3" ><div class="mytitle">鏌ョ湅鎶ュ憡</div></td> 
 	  </tr>
 	 <tr style="background-color:#dddddd" class="pt11" height="32">
-	 标题:<s:property value="reportBean.report.headline"/><br/>
+	 鏍囬:<s:property value="reportBean.report.headline"/><br/>
 	 </tr>
 	 <tr>
 
 	 <p>
-	 内容:<s:property value="reportBean.relacedContent" escape="false"/>
+	 鍐呭:<s:property value="reportBean.relacedContent" escape="false"/>
 	 </p><br/>
 	 </tr>
 	<tr>
-	附件:<a href="download.action?id=<s:property value="reportBean.upfile.id"/>"><s:property value="reportBean.upfile.fileName"/></a>
+	闄勪欢:<a href="download.action?id=<s:property value="reportBean.upfile.id"/>"><s:property value="reportBean.upfile.fileName"/></a>
 	</tr>
 	</tr>
 	</table>

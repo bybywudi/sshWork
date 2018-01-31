@@ -1,16 +1,19 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>µÇÂ¼ÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æŠ¥å‘Š</title>
 <s:head/>
 </head>
 <body>
-<%@include file="mgrheader.jsp"%>
-<table width="960" align="center"
-	background="${pageContext.request.contextPath}/images/bodybg.jpg">
+<%@include file="mgrUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
 <tr>
 <td>
 <s:if test="actionMessages.size()>0">
@@ -19,15 +22,14 @@
 </div>
 </s:if>
 <s:actionerror cssClass="error"/>
-	<table width="80%" border="0" align="center" 
-		cellspacing="1" bgcolor="#cccccc">
+	<table class="layui-table">
 	  <tr bgcolor="#e1e1e1" >
-		<td colspan="3" ><div class="mytitle">ÄúÕıÔÚ²é¿´È«²¿±¨¸æ</div></td> 
+		<td colspan="3" ><div class="mytitle">æ‚¨æ­£åœ¨æŸ¥çœ‹å…¨éƒ¨æŠ¥å‘Š</div></td> 
 	  </tr>
 	  <tr class="pt11" height="45">
-		<td><b>±êÌâ</b></td>
-		<td><b>»ã±¨ÈË</b></td>
-		<td><b>±¨¸æÊ±¼ä</b></td>
+		<td><b>æ ‡é¢˜</b></td>
+		<td><b>æ±‡æŠ¥äºº</b></td>
+		<td><b>æŠ¥å‘Šæ—¶é—´</b></td>
 	  </tr>
 	<s:iterator value="pb.list" status="index">  
 	 	<s:if test="#index.odd == true"> 
@@ -39,17 +41,17 @@
 		<td><s:property value="report.headline"/></td>
 		<td><s:property value="realName"/></td>
 		<td><s:property value="report.reportTime"/></td>
-		<td><a href="mgrViewReport.action?id=<s:property value="report.id"/>">²é¿´</a></td>
+		<td><a href="mgrViewReport.action?id=<s:property value="report.id"/>">æŸ¥çœ‹</a></td>
 	  </tr>
 	</s:iterator>  
 	
 	<s:if test="pb.list != null">
-			¹²<s:property value="pb.totalrecord"/>Ìõ¼ÇÂ¼,
-			¹²<s:property value="pb.totalpage"/>Ò³,
-			µ±Ç°µÚ<s:property value="pb.currentpage"/>Ò³
+			å…±<s:property value="pb.totalrecord"/>æ¡è®°å½•,
+			å…±<s:property value="pb.totalpage"/>é¡µ,
+			å½“å‰ç¬¬<s:property value="pb.currentpage"/>é¡µ
 		</s:if>
 		<s:if test="pb.currentpage != 1">
-			<a href="listReportByMgrId.action?currentpage=<s:property value="pb.previouspage"/>&pagesize=10">ÉÏÒ»Ò³&nbsp;</a>
+			<a href="listReportByMgrId.action?currentpage=<s:property value="pb.previouspage"/>&pagesize=10">ä¸Šä¸€é¡µ&nbsp;</a>
 		</s:if>
 <%-- 		<s:iterator value="pb.pagebar" id="pagenum" status="st">   --%>
 <%-- 		 	<s:if test="pagenum == pb.currentpage">  --%>
@@ -62,30 +64,30 @@
 <%-- 		</s:iterator> --%>
 		
 			<s:if test="pb.currentpage!=pb.totalpage && pb.totalrecord!=0">
-			<a href="listReportByMgrId.action?currentpage=<s:property value="pb.nextpage"/>&pagesize=10">ÏÂÒ»Ò³&nbsp;</a>
+			<a href="listReportByMgrId.action?currentpage=<s:property value="pb.nextpage"/>&pagesize=10">ä¸‹ä¸€é¡µ&nbsp;</a>
 			</s:if>
  				
 			<input type="text" id="pagenum" style="width: 30px">
 			<input type="button" value="GO"
 				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
-	</div>
-	
-	</table>
+
+
 </td>
 </tr>
 </table>
 </td>
 </tr>
 </table>
+</div>
 <script type="text/javascript">
 	
 	function gotopage(pagenum,oldvalue,totalpage){
 		if(pagenum<=0 || pagenum!=parseInt(pagenum)){
-			alert("ÇëÊäÈëÕıÕûÊı");
+			alert("è¯·è¾“å…¥æ­£æ•´æ•°");
 			document.getElementById("pagenum").value = oldvalue;
 		}else{
 			if(pagenum>totalpage){
-				alert("ÇëÊäÈëÒ³Êı·¶Î§ÄÚµÄÊı");
+				alert("è¯·è¾“å…¥é¡µæ•°èŒƒå›´å†…çš„æ•°");
 				document.getElementById("pagenum").value = oldvalue;
 			}else{
 				//var pagesize = 10;			

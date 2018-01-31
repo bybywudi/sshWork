@@ -1,20 +1,20 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>项目成员管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>椤圭洰鎴愬憳绠＄悊</title>
 </head>
 <body>
-<%@include file="../header.jsp"%> 
-<%@include file="mgrheader.jsp"%> 
-<table width="960" align="center" 
-	background="images/bodybg.jpg">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
+<%@include file="mgrUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
+
   <tr>
 	<td>
 <s:if test="actionMessages.size()>0">
@@ -25,13 +25,7 @@
 	</td>
   </tr>
 		<tr>
-		<td><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
-		<td><div align="center"><a href="listAchievement.action">成果综述管理</a></div></td>
-		<td><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
-		<td><div align="center"><a href="listPatent.action?currentpage=1&pagesize=10">专利成果管理</a></div></td>
-		</tr>
-		<tr>
-		<td width="94"><div align="center"><a href="toaddProjectMember">增加项目成员</a></div></td>
+		<td width="94"><div align="center"><a href="toaddProjectMember">澧炲姞椤圭洰鎴愬憳</a></div></td>
 		</tr>
 		
 		 <s:iterator value="pms" status="index">  
@@ -39,13 +33,13 @@
 			<s:property value="pm.name"/><br/>
 			<s:property value="pmIntroduction" escape="false"/><br/>
 			<img src="<s:property value="fsavePath"/>"/><br/>
-			<a href="deleteProjectMember?id=<s:property value="pm.id"/>">删除</a><br/>
+			<a href="deleteProjectMember?id=<s:property value="pm.id"/>">鍒犻櫎</a><br/>
 
 		</s:iterator>  
   <tr height="60">
 	<td>&nbsp;</td>
   </tr>
 </table>
-<%@include file="../footer.jsp"%> 
+</div>
 </body>
 </html>

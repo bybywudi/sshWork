@@ -11,12 +11,6 @@
 <%@include file="empUI.jsp"%>
 <div class="layui-body" id="container">
 <table class="layui-table" lay-filter="test" id="test">
-	<tr><br/></tr>
-	<tr><br/></tr>
-	<tr><br/></tr>
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
   <tr>
 	<td>
 <s:if test="actionMessages.size()>0">
@@ -26,13 +20,13 @@
 </s:if>
 	</td>
   </tr>
-			 <tr class="pt11" height="45">
+<%--			 <tr class="pt11" height="45">
 				 <td><a href="employeetoaddSharedFile.action">分享文件</a></td>
 			 </tr>
 			 <tr class="pt11" height="45">
 				 <td><a href="employeeuserFile.action?currentpage=1&pagesize=10">我的文件</a></td>
 				 <td><a href="employeesharedFile.action?currentpage=1&pagesize=10">所有文件</a></td>
-			 </tr>
+			 </tr>--%>
 
 			 <tr class="pt11" height="45">
 				 <td><b>文件来源</b></td>
@@ -48,9 +42,9 @@
 			</s:else>
 			<td width="10%"><s:property value="source"/></td>
 			<td width="75%"><s:property value="file.fileName"/></td>
-			<td width="15%"><a href="download.action?id=<s:property value="file.id"/>">下载</a>
-				<a href="emptoEditFile?id=<s:property value="file.id"/>">编辑</a>
-				<a href="empdeleteFile?id=<s:property value="file.id"/>">删除</a></td>
+			<td width="15%"><a href="download.action?id=<s:property value="file.id"/>"><input type="button" value="下载"></a>
+				<a href="emptoEditFile?id=<s:property value="file.id"/>"><input type="button" value="编辑"></a>
+				<a href="empdeleteFile?id=<s:property value="file.id"/>"><input type="button" value="删除"></a></td>
 		  </tr>
 		</s:iterator>  
 		
@@ -79,9 +73,6 @@
 			<input type="text" id="pagenum" style="width: 30px">
 			<input type="button" value="GO"
 				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
 </table>
 </div>
 

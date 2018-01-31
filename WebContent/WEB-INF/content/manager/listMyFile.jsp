@@ -1,20 +1,19 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>¾­ÀíÊ×Ò³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æˆ‘çš„æ–‡ä»¶</title>
 </head>
 <body>
-<%@include file="../header.jsp"%> 
-<%@include file="mgrheader.jsp"%> 
-<table width="80%" border="0" align="center"
-       cellspacing="1" bgcolor="#cccccc">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
+<%@include file="mgrUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
   <tr>
 	<td>
 <s:if test="actionMessages.size()>0">
@@ -24,18 +23,18 @@
 </s:if>
 	</td>
   </tr>
-			 <tr class="pt11" height="45">
-				 <td><a href="managertoaddSharedFile.action">·ÖÏíÎÄ¼ş</a></td>
+		<%--	 <tr class="pt11" height="45">
+				 <td><a href="managertoaddSharedFile.action">åˆ†äº«æ–‡ä»¶</a></td>
 			 </tr>
 			 <tr class="pt11" height="45">
-				 <td><a href="manageruserFile.action?currentpage=1&pagesize=10">ÎÒµÄÎÄ¼ş</a></td>
-				 <td><a href="managersharedFile.action?currentpage=1&pagesize=10">ËùÓĞÎÄ¼ş</a></td>
-			 </tr>
+				 <td><a href="manageruserFile.action?currentpage=1&pagesize=10">æˆ‘çš„æ–‡ä»¶</a></td>
+				 <td><a href="managersharedFile.action?currentpage=1&pagesize=10">æ‰€æœ‰æ–‡ä»¶</a></td>
+			 </tr>--%>
 
 			 <tr class="pt11" height="45">
-				 <td><b>ÎÄ¼şÀ´Ô´</b></td>
-				 <td><b>ÎÄ¼şÃû</b></td>
-				 <td><b>²Ù×÷</b></td>
+				 <td><b>æ–‡ä»¶æ¥æº</b></td>
+				 <td><b>æ–‡ä»¶å</b></td>
+				 <td><b>æ“ä½œ</b></td>
 			 </tr>
 		<s:iterator value="pb.list" status="index">
 			<s:if test="#index.odd == true">
@@ -46,17 +45,17 @@
 			</s:else>
 			<td width="10%"><s:property value="source"/></td>
 			<td width="85%"><s:property value="file.fileName"/></td>
-			<td width="5%"><a href="download.action?id=<s:property value="file.id"/>">ÏÂÔØ</a></td>
+			<td width="5%"><a href="download.action?id=<s:property value="file.id"/>">ä¸‹è½½</a></td>
 		  </tr>
 		</s:iterator>  
 		
 		<s:if test="pb.list != null">
-			¹²<s:property value="pb.totalrecord"/>Ìõ¼ÇÂ¼,
-			¹²<s:property value="pb.totalpage"/>Ò³,
-			µ±Ç°µÚ<s:property value="pb.currentpage"/>Ò³
+			å…±<s:property value="pb.totalrecord"/>æ¡è®°å½•,
+			å…±<s:property value="pb.totalpage"/>é¡µ,
+			å½“å‰ç¬¬<s:property value="pb.currentpage"/>é¡µ
 		</s:if>
 		<s:if test="pb.currentpage != 1">
-			<a href="manageruserFile.action?currentpage=<s:property value="pb.previouspage"/>&pagesize=10">ÉÏÒ»Ò³&nbsp;</a>
+			<a href="manageruserFile.action?currentpage=<s:property value="pb.previouspage"/>&pagesize=10">ä¸Šä¸€é¡µ&nbsp;</a>
 		</s:if>
 <%-- 		<s:iterator value="pb.pagebar" id="pagenum" status="st">   --%>
 <%-- 		 	<s:if test="pagenum == pb.currentpage">  --%>
@@ -69,7 +68,7 @@
 <%-- 		</s:iterator> --%>
 		
 			<s:if test="pb.currentpage!=pb.totalpage && pb.totalrecord!=0">
-			<a href="manageruserFile.action?currentpage=<s:property value="pb.nextpage"/>&pagesize=10">ÏÂÒ»Ò³&nbsp;</a>
+			<a href="manageruserFile.action?currentpage=<s:property value="pb.nextpage"/>&pagesize=10">ä¸‹ä¸€é¡µ&nbsp;</a>
 			</s:if>
  				
 			<input type="text" id="pagenum" style="width: 30px">
@@ -85,11 +84,11 @@
 	
 	function gotopage(pagenum,oldvalue,totalpage){
 		if(pagenum<=0 || pagenum!=parseInt(pagenum)){
-			alert("ÇëÊäÈëÕıÕûÊı");
+			alert("è¯·è¾“å…¥æ­£æ•´æ•°");
 			document.getElementById("pagenum").value = oldvalue;
 		}else{
 			if(pagenum>totalpage){
-				alert("ÇëÊäÈëÒ³Êı·¶Î§ÄÚµÄÊı");
+				alert("è¯·è¾“å…¥é¡µæ•°èŒƒå›´å†…çš„æ•°");
 				document.getElementById("pagenum").value = oldvalue;
 			}else{
 				//var pagesize = 10;			

@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>KIT ADMIN</title>
+    <title>mcc ADMIN</title>
     <link rel="stylesheet" href="/myhtml/plugins/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/myhtml/build/css/app.css" media="all">
@@ -20,7 +20,7 @@
             <div class="layui-logo kit-logo-mobile">K</div>
             <ul class="layui-nav layui-layout-left kit-nav" kit-one-level>
                 <li class="layui-nav-item"><a href="javascript:;">学生列表</a></li>
-                <li class="layui-nav-item"><a href="http://39.106.194.129:8080/sshWork/realistic/index.action?mgrId=1">实验室成果展示</a></li>
+                <li class="layui-nav-item" onclick="window.open('http://39.106.194.129:8080/sshWork/realistic/index.action?mgrId=1')"><a  id="lab">实验室成果展示</a></li>
             </ul>
             <ul class="layui-nav layui-layout-right kit-nav">
                 <li class="layui-nav-item">
@@ -41,7 +41,7 @@
                 <div class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 会议</span></a>
                         <dl class="layui-nav-child">
                             <dd>
@@ -53,7 +53,7 @@
                             </dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 单独报告</span></a>
                         <dl class="layui-nav-child">
                             <dd>
@@ -66,7 +66,7 @@
                             </dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 文件共享</span></a>
                         <dl class="layui-nav-child">
                             <dd>
@@ -92,7 +92,7 @@
                             <dd><a href="javascript:;" kit-target data-options="{url:'app.html',icon:'&#xe658;',title:'App',id:'8'}"><i class="layui-icon">&#xe658;</i><span>谷歌学术</span></a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;" data-url="/components/table/table.html" data-name="table" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span>使用帮助</span></a>
                     </li>
                 </ul>
@@ -137,6 +137,7 @@
                 });
             });
         });
+
     </script>
 </body>
 

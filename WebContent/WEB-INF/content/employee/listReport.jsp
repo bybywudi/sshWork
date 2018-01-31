@@ -40,7 +40,7 @@
 		</s:else>
 		<td><s:property value="headline"/></td>
 		<td><s:property value="reportTime"/></td>
-		<td><a href="empViewReport.action?id=<s:property value="id"/>">查看</a></td>
+		<td><a href="empViewReport.action?id=<s:property value="id"/>"><input type="button" value="查看"></a></td>
 	  </tr>
 	</s:iterator>  
 	

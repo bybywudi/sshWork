@@ -12,8 +12,6 @@
 <div class="layui-body" id="container">
 	<table class="layui-table" lay-filter="test" id="test">
 		<tr><br/></tr>
-		<tr><br/></tr>
-		<tr><br/></tr>
 <tr>
 <td>
 <br>
@@ -48,7 +46,7 @@
 	<td><s:property value="studentName"/></td>
 	<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingStartTime"/></td>
 	<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingEndTime"/></td>
-	<td><a href="empViewMeeting?id=<s:property value="id"/>">查看</a></td>
+	<td><a href="empViewMeeting?id=<s:property value="id"/>"><input type="button" value="查看"></a></td>
   </tr>
 </s:iterator>  
 

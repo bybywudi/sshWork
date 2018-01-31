@@ -48,8 +48,8 @@
 			<td width="70%"><s:property value="file.fileName"/></td>
 			<td width="10%"><s:property value="userName"/></td>
 
-			<td width="10%"><a href="empViewFile?id=<s:property value="file.id"/>">详情</a>
-				<a href="download.action?id=<s:property value="file.id"/>">下载</a></td>
+			<td width="10%"><a href="empViewFile?id=<s:property value="file.id"/>"><input type="button" value="详情"></a>
+				<a href="download.action?id=<s:property value="file.id"/>"><input type="button" value="下载"></a></td>
 		  </tr>
 		</s:iterator>  
 		
@@ -78,9 +78,6 @@
 			<input type="text" id="pagenum" style="width: 30px">
 			<input type="button" value="GO"
 				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
 </table>
 </div>
 

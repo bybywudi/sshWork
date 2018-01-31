@@ -1,16 +1,19 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>汇报</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>姹囨姤</title>
 <s:head/>
 </head>
 <body>
-<%@include file="mgrheader.jsp"%>
-<table width="960" align="center"
-	background="${pageContext.request.contextPath}/images/bodybg.jpg">
+<%@include file="mgrUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
 <tr>
 <td>
 <s:if test="actionMessages.size()>0">
@@ -22,14 +25,15 @@
 <div align="center">
 <s:form action="managershareFile"
 	enctype="multipart/form-data">
-	<s:file name="upload" label="选择文件(大小不能超过9M)"/>
-	<s:textarea name="description" cols="100" rows="5" label="简单描述"/>
+	<s:file name="upload" label="閫夋嫨鏂囦欢(澶у皬涓嶈兘瓒呰繃9M)"/>
+	<s:textarea name="description" cols="100" rows="5" label="绠�鍗曟弿杩�"/>
 	<s:fielderror/>
-	<s:submit value="分享"/>
+	<s:submit value="鍒嗕韩"/>
 </s:form>
 </div>
 </td>
 </tr>
 </table>
+</div>
 </body>
 </html>

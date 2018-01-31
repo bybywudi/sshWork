@@ -37,7 +37,7 @@
 	 </tr>
 	 
 	  <tr>
-	 	<a href="toreportToMeeting?id=<s:property value="lmb.meeting.id"/>">我要汇报</a>
+	 	<a href="toreportToMeeting?id=<s:property value="lmb.meeting.id"/>"><input type="button" value="我要汇报"></a>
 	 </tr>
 	<tr class="pt11" height="45">
 		<th width="75%"><b>标题</b></th>
@@ -53,7 +53,7 @@
 		</s:else>
 		<td><s:property value="file.url"/></td>
 		<td><s:property value="userName"/></td>
-		<td><a href="empViewFile?id=<s:property value="file.id"/>">查看</a></td>
+		<td><a href="empViewFile?id=<s:property value="file.id"/>"><input type="button" value="查看"></a></td>
 	  </tr>
 	</s:iterator>  
 	</table>
