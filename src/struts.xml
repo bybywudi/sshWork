@@ -285,6 +285,8 @@
 			<interceptor-ref name="basicStack"/>
 			<result>/WEB-INF/content/{1}/listMeeting.jsp</result>
 		 </action>
+
+
 		 
 		 <action name="*ListMeetingBefore"
 			class="action.ListMeetingAction" method="listMeetingByMgrBeforeEndTime">
@@ -292,6 +294,12 @@
 			<interceptor-ref name="basicStack"/>
 			<result>/WEB-INF/content/{1}/listNowMeeting.jsp</result>
 		 </action>
+
+
+		<action name="testmt"
+				class="action.ListMeetingAction" method="listMeetingByMgr">
+			<result>listMeeting.jsp</result>
+		</action>
 
 		<action name="*sharedFile"
 				class="action.ListFileAction" method="listSharedFile">
@@ -608,6 +616,7 @@
         	<param name="contentType">text/html</param>
         </result>
       </action>
+
   </package>
 
 </struts>
