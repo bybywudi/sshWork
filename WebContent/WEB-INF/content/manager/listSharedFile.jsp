@@ -14,7 +14,6 @@
 		<tr><br/></tr>
 		<tr><br/></tr>
 		<tr><br/></tr>
-
   <tr>
 	<td>
 <s:if test="actionMessages.size()>0">
@@ -48,9 +47,9 @@
 			<td width="10%"><s:property value="source"/></td>
 			<td width="70%"><s:property value="file.fileName"/></td>
 			<td width="10%"><s:property value="userName"/></td>
-			<td width="10%"><a href="download.action?id=<s:property value="file.id"/>">下载</a>
-				<a href="mgrViewFile?id=<s:property value="file.id"/>">详情</a>
-				<a href="deletePaperFile?id=<s:property value="file.id"/>">删除</a></td>
+			<td width="10%"><a href="download.action?id=<s:property value="file.id"/>"><input type="button" value="下载"></a>
+				<a href="mgrViewFile?id=<s:property value="file.id"/>"><input type="button" value="详情"></a>
+				<a href="deletePaperFile?id=<s:property value="file.id"/>"><input type="button" value="删除"></a></td>
 		  </tr>
 		</s:iterator>  
 		
@@ -79,9 +78,6 @@
 			<input type="text" id="pagenum" style="width: 30px">
 			<input type="button" value="GO"
 				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
 </table>
 </div>
 

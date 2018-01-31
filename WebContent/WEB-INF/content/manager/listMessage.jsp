@@ -23,16 +23,6 @@
 </s:if>
 	</td>
   </tr>
-		<tr>
-		<td><div align="center"><a href="listProjectMember.action">项目成员管理</a></div></td>
-		<td><div align="center"><a href="listAchievement.action">成果综述管理</a></div></td>
-		<td><div align="center"><a href="listPaper.action?currentpage=1&pagesize=10">论文成果管理</a></div></td>
-		<td><div align="center"><a href="listPatent.action?currentpage=1&pagesize=10">专利成果管理</a></div></td>
-		</tr>
-		<tr>
-		<td width="94"><div align="center"><a href="zengjiachengguomanage">增加成果</a></div></td>
-		</tr>
-		
 		 <s:iterator value="pb.list" status="index">  
 		 	<s:if test="#index.odd == true"> 
 				 <tr style="background-color:#dddddd" class="pt11" height="32">
@@ -71,9 +61,7 @@
 			<input type="text" id="pagenum" style="width: 30px">
 			<input type="button" value="GO"
 				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
+
 </table>
 </div>
 <%@include file="../footer.jsp"%> 

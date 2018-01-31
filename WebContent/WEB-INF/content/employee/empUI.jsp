@@ -86,10 +86,10 @@
                     <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 其他工具</span></a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" kit-target data-options="{url:'navbar.html',icon:'&#xe658;',title:'Navbar',id:'6'}"><i class="layui-icon">&#xe658;</i><span> github</span></a></dd>
-                            <dd><a href="javascript:;" kit-target data-options="{url:'tab.html',icon:'&#xe658;',title:'TAB',id:'7'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a></dd>
-                            <dd><a href="javascript:;" kit-target data-options="{url:'onelevel.html',icon:'&#xe658;',title:'OneLevel',id:'50'}"><i class="layui-icon">&#xe658;</i><span> 谷歌翻译</span></a></dd>
-                            <dd><a href="javascript:;" kit-target data-options="{url:'app.html',icon:'&#xe658;',title:'App',id:'8'}"><i class="layui-icon">&#xe658;</i><span>谷歌学术</span></a></dd>
+                            <dd onclick="window.open('https://github.com/')"><a href="javascript:;" kit-target data-options="{url:'navbar.html',icon:'&#xe658;',title:'Navbar',id:'6'}"><i class="layui-icon">&#xe658;</i><span> github</span></a></dd>
+                            <dd onclick="window.open('https://www.baidu.com/')"><a href="javascript:;" kit-target data-options="{url:'tab.html',icon:'&#xe658;',title:'TAB',id:'7'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a></dd>
+                            <dd onclick="window.open('http://translate.google.cn/?hl=en')"><a href="javascript:;" kit-target data-options="{url:'onelevel.html',icon:'&#xe658;',title:'OneLevel',id:'50'}"><i class="layui-icon">&#xe658;</i><span> 谷歌翻译</span></a></dd>
+                            <dd onclick="window.open('')"><a href="javascript:;" kit-target data-options="{url:'app.html',icon:'&#xe658;',title:'App',id:'8'}"><i class="layui-icon">&#xe658;</i><span>谷歌学术</span></a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item layui-nav-itemed">

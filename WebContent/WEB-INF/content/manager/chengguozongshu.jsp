@@ -14,9 +14,6 @@
 		<tr><br/></tr>
 		<tr><br/></tr>
 		<tr><br/></tr>
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
   <tr>
 	<td>
 <s:if test="actionMessages.size()>0">
@@ -26,6 +23,9 @@
 </s:if>
 	</td>
   </tr>
+		<tr>
+			<td><div align="center"><a href="zengjiachengguomanage"><input type="button" value="增加成果"></a></div></td>
+		</tr>
 		 <s:iterator value="pb.list" status="index">  
 		 	<s:if test="#index.odd == true"> 
 				 <tr style="background-color:#dddddd" class="pt11" height="32">
@@ -37,8 +37,8 @@
 			<td width="35%"><s:property value="description"/></td>
 			<td width="20%"><s:property value="urlName"/></td>
 			<td width="25%"><a href="download.action?id=<s:property value="id"/>"><s:property value="fileName"/></a></td>
-			<td width="10%"><a href="toEditFile?id=<s:property value="id"/>">编辑</a></td>
-			<td width="10%"><a href="deletePaperFile?id=<s:property value="id"/>">删除</a></td>
+			<td width="10%"><a href="toEditFile?id=<s:property value="id"/>"><input type="button" value="编辑"></a></td>
+			<td width="10%"><a href="deletePaperFile?id=<s:property value="id"/>"><input type="button" value="删除"></a></td>
 		  </tr>
 		</s:iterator>  
 		
@@ -67,9 +67,6 @@
 			<input type="text" id="pagenum" style="width: 30px">
 			<input type="button" value="GO"
 				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
 </table>
 </div>
 

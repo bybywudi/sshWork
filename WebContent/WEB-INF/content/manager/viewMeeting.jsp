@@ -48,7 +48,7 @@
 		</s:else>
 		<td><s:property value="file.url"/></td>
 		<td><s:property value="userName"/></td>
-		<td><a href="mgrViewFile?id=<s:property value="file.id"/>">查看</a>
+		<td><a href="mgrViewFile?id=<s:property value="file.id"/>"><input type="button" value="查看"></a>
 			<%--<a href="deletePaperFile?id=<s:property value="file.id"/>">删除</a>--%></td>
 	  </tr>
 	</s:iterator>  

@@ -38,8 +38,8 @@
 			</s:else>
 			
 			<td width="80%"><s:property value="description"/></td>
-			<td width="10%"><a href="toEditFile?id=<s:property value="id"/>">编辑</a></td>
-			<td width="10%"><a href="deletePaperFile?id=<s:property value="id"/>">删除</a></td>
+			<td width="10%"><a href="toEditFile?id=<s:property value="id"/>"><input type="button" value="编辑"></a></td>
+			<td width="10%"><a href="deletePaperFile?id=<s:property value="id"/>"><input type="button" value="删除"></a></td>
 		  </tr>
 		</s:iterator>
 		<div>

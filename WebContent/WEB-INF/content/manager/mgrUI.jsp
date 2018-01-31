@@ -20,7 +20,7 @@
             <div class="layui-logo kit-logo-mobile">K</div>
             <ul class="layui-nav layui-layout-left kit-nav" kit-one-level>
                 <li class="layui-nav-item"><a href="javascript:;">学生列表</a></li>
-                <li class="layui-nav-item"><a href="javascript:;">实验室成果展示</a></li>
+                <li class="layui-nav-item" onclick="window.open('http://39.106.194.129:8080/sshWork/realistic/index.action?mgrId=1')"><a >实验室成果展示</a></li>
             </ul>
             <ul class="layui-nav layui-layout-right kit-nav">
                 <li class="layui-nav-item">

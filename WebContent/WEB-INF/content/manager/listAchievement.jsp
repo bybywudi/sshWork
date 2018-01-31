@@ -28,7 +28,7 @@
   </tr>
 		
 		<tr>
-			<a href="toEditAchievement.action">编辑</a><br/>
+			<a href="toEditAchievement.action"><input type="button" value="编辑"></a><br/>
 			标题：${requestScope.articleBean.aTitle}<br/>
 			内容：${requestScope.articleBean.aContent}<br/>
 		</tr>

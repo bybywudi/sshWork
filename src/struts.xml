@@ -206,10 +206,10 @@
 		<!-- 定义处理登录系统的的Action -->
 		<action name="processLogin"
 			class="action.LoginAction">
-			<result name="input">login.jsp</result>
+			<result name="input">/WEB-INF/content/login.jsp</result>
 			<result name="mgr">/WEB-INF/content/manager/index.jsp</result>
 			<result name="emp">/WEB-INF/content/employee/index.jsp</result>
-			<result name="error">login.jsp</result>
+			<result name="error">/WEB-INF/content/login.jsp</result>
 		</action>
 		
 		<!-- 定义处理注册的Action -->

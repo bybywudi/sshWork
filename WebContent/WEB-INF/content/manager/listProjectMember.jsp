@@ -33,12 +33,10 @@
 			<s:property value="pm.name"/><br/>
 			<s:property value="pmIntroduction" escape="false"/><br/>
 			<img src="<s:property value="fsavePath"/>"/><br/>
-			<a href="deleteProjectMember?id=<s:property value="pm.id"/>">删除</a><br/>
+			<a href="deleteProjectMember?id=<s:property value="pm.id"/>"><input type="button" value="删除"></a><br/>
 
 		</s:iterator>  
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
+
 </table>
 </div>
 </body>

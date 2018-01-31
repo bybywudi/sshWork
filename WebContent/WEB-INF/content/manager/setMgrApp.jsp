@@ -36,8 +36,8 @@
 	<td><s:property value="empRealName"/></td>
 	<td><s:property value="comment"/></td>
 	<td><s:property value="appTime"/></td>
-	<td><a href="manageSetMgr.action?empId=<s:property value="empId"/>&method=agree">同意</a></td>
-	<td><a href="manageSetMgr.action?empId=<s:property value="empId"/>&method=disagree">拒绝</a></td>
+	<td><a href="manageSetMgr.action?empId=<s:property value="empId"/>&method=agree"><input type="button" value="同意"></a></td>
+	<td><a href="manageSetMgr.action?empId=<s:property value="empId"/>&method=disagree"><input type="button" value="拒绝"></a></td>
   </tr>
 </s:iterator>  
 </table>

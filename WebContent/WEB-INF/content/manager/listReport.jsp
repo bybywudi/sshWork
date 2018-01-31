@@ -41,7 +41,7 @@
 		<td><s:property value="report.headline"/></td>
 		<td><s:property value="realName"/></td>
 		<td><s:property value="report.reportTime"/></td>
-		<td><a href="mgrViewReport.action?id=<s:property value="report.id"/>">查看</a></td>
+		<td><a href="mgrViewReport.action?id=<s:property value="report.id"/>"><input type="button" value="查看"></a></td>
 	  </tr>
 	</s:iterator>  
 	

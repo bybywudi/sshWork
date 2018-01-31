@@ -45,7 +45,7 @@
 			</s:else>
 			<td width="10%"><s:property value="source"/></td>
 			<td width="85%"><s:property value="file.fileName"/></td>
-			<td width="5%"><a href="download.action?id=<s:property value="file.id"/>">下载</a></td>
+			<td width="5%"><a href="download.action?id=<s:property value="file.id"/>"><input type="button" value="下载"></a></td>
 		  </tr>
 		</s:iterator>  
 		
@@ -74,9 +74,6 @@
 			<input type="text" id="pagenum" style="width: 30px">
 			<input type="button" value="GO"
 				onclick="gotopage(document.getElementById('pagenum').value,<s:property value="pb.currentpage"/>,<s:property value="pb.totalpage"/>)">
-  <tr height="60">
-	<td>&nbsp;</td>
-  </tr>
 </table>
 <%@include file="../footer.jsp"%> 
 
