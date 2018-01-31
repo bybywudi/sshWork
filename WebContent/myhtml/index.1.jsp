@@ -19,14 +19,13 @@
             <div class="layui-logo">KIT ADMIN</div>
             <div class="layui-logo kit-logo-mobile">K</div>
             <ul class="layui-nav layui-layout-left kit-nav" kit-one-level>
-                <li class="layui-nav-item"><a href="javascript:;">控制台</a></li>
-                <li class="layui-nav-item"><a href="javascript:;">商品管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">学生列表</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">实验室成果展示</a></li>
             </ul>
             <ul class="layui-nav layui-layout-right kit-nav">
-                <li class="layui-nav-item"><a href="javascript:;" id="pay"><i class="fa fa-gratipay" aria-hidden="true"></i> 捐赠我</a></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <img src="http://m.zhengjinfan.cn/images/0.jpg" class="layui-nav-img"> Van
+                        <img src="" class="layui-nav-img"> 白杨
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">基本资料</a></dd>
@@ -43,49 +42,72 @@
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
                     <li class="layui-nav-item">
-                        <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 基本元素</span></a>
+                        <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 会议</span></a>
                         <dl class="layui-nav-child">
                             <dd>
                                 <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
-                                    <i class="layui-icon">&#xe6c6;</i><span> 表格</span></a>
+                                    <i class="layui-icon">&#xe6c6;</i><span> 历史会议</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 表单</span></a>
+                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 进行中的会议</span></a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 单独报告</span></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                    <i class="layui-icon">&#xe6c6;</i><span> 我的报告</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 导航栏</span></a>
+                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
+                                    <i class="fa fa-user" aria-hidden="true"></i><span>创建报告</span></a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 文件共享</span></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                    <i class="layui-icon">&#xe6c6;</i><span> 分享文件</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-url="list4.html" data-icon="&#xe614;" data-title="列表四" kit-target data-id='4'><i class="layui-icon">&#xe614;</i><span> 列表四</span></a>
+                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
+                                    <i class="fa fa-user" aria-hidden="true"></i><span>我的文件</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" kit-target data-options="{url:'https://www.baidu.com',icon:'&#xe658;',title:'百度一下',id:'5'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a>
+                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
+                                    <i class="fa fa-user" aria-hidden="true"></i><span>所有文件</span></a>
                             </dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 组件</span></a>
+                        <a href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 其他工具</span></a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" kit-target data-options="{url:'navbar.html',icon:'&#xe658;',title:'Navbar',id:'6'}"><i class="layui-icon">&#xe658;</i><span> Navbar</span></a></dd>
-                            <dd><a href="javascript:;" kit-target data-options="{url:'tab.html',icon:'&#xe658;',title:'TAB',id:'7'}"><i class="layui-icon">&#xe658;</i><span> Tab</span></a></dd>
-                            <dd><a href="javascript:;" kit-target data-options="{url:'onelevel.html',icon:'&#xe658;',title:'OneLevel',id:'50'}"><i class="layui-icon">&#xe658;</i><span> OneLevel</span></a></dd>
-                            <dd><a href="javascript:;" kit-target data-options="{url:'app.html',icon:'&#xe658;',title:'App',id:'8'}"><i class="layui-icon">&#xe658;</i><span> app.js主入口</span></a></dd>
+                            <dd><a href="javascript:;" kit-target data-options="{url:'navbar.html',icon:'&#xe658;',title:'Navbar',id:'6'}"><i class="layui-icon">&#xe658;</i><span> github</span></a></dd>
+                            <dd><a href="javascript:;" kit-target data-options="{url:'tab.html',icon:'&#xe658;',title:'TAB',id:'7'}"><i class="layui-icon">&#xe658;</i><span> 百度一下</span></a></dd>
+                            <dd><a href="javascript:;" kit-target data-options="{url:'onelevel.html',icon:'&#xe658;',title:'OneLevel',id:'50'}"><i class="layui-icon">&#xe658;</i><span> 谷歌翻译</span></a></dd>
+                            <dd><a href="javascript:;" kit-target data-options="{url:'app.html',icon:'&#xe658;',title:'App',id:'8'}"><i class="layui-icon">&#xe658;</i><span>谷歌学术</span></a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;" data-url="/components/table/table.html" data-name="table" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span> 表格(page)</span></a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;" data-url="/views/form.html" data-name="form" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span> 表单(page)</span></a>
+                        <a href="javascript:;" data-url="/components/table/table.html" data-name="table" kit-loader><i class="fa fa-plug" aria-hidden="true"></i><span>使用帮助</span></a>
                     </li>
                 </ul>
             </div>
         </div>
 
+        <div class="layui-body" id="container">
+            <!-- 内容主体区域 -->
+            <%--<div style="padding: 15px;"></div>--%>
+        </div>
+
         <div class="layui-footer">
             <!-- 底部固定区域 -->
-            2017 &copy;
-            <a href="http://kit.zhengjinfan.cn/">kit.zhengjinfan.cn/</a> MIT license
+            2018 &copy;
+            <a href="">MCClib</a>
 
         </div>
     </div>

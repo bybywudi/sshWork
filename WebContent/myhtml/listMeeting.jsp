@@ -11,27 +11,31 @@
 
 <body>
 <%@include file="index.1.jsp"%>
-<table class="layui-table" lay-filter="test" id="test">
-	<thead>
-	<tr>
-		<th>会议标题</th>
-		<th>报告人</th>
-		<th>开始时间</th>
-		<th>结束时间</th>
-		<th>操作</th>
-	</tr>
-	<s:iterator value="pb.list" status="index">
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<thead>
+		<th>
+			查看会议
+		</th>
 		<tr>
-			<td><s:property value="headline"/></td>
-			<td><s:property value="studentName"/></td>
-			<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingStartTime"/></td>
-			<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingEndTime"/></td>
-			<td><a href="empViewMeeting?id=<s:property value="id"/>">查看</a></td>
+			<td>会议标题</td>
+			<td>报告人</td>
+			<td>开始时间</td>
+			<td>结束时间</td>
+			<td>操作</td>
 		</tr>
-	</s:iterator>
-	</thead>
-</table>
-
+		<s:iterator value="pb.list" status="index">
+			<tr>
+				<td><s:property value="headline"/></td>
+				<td><s:property value="studentName"/></td>
+				<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingStartTime"/></td>
+				<td><s:date format="yyyy-MM-dd HH:mm:ss" name="meetingEndTime"/></td>
+				<td><a href="empViewMeeting?id=<s:property value="id"/>">查看</a></td>
+			</tr>
+		</s:iterator>
+		</thead>
+	</table>
+</div>
 <script src="./plugins/layui/layui.js"></script>
 <script>
     layui.use('table', function() {
