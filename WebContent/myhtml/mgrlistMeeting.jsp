@@ -10,7 +10,12 @@
 </head>
 
 <body>
-<%@include file="index.1.jsp"%>
+<s:if test="#session.level == 'emp'">
+	<%@include file="empUI.jsp"%>
+</s:if>
+<s:if test="#session.level == 'mgr'">
+	<%@include file="mgrUI.jsp"%>
+</s:if>
 <div class="layui-body" id="container">
 	<table class="layui-table" lay-filter="test" id="test">
 		<thead>

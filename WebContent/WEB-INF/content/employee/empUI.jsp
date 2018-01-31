@@ -8,31 +8,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>KIT ADMIN</title>
-    <link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/myhtml/plugins/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./build/css/app.css" media="all">
-    <link rel="stylesheet" href="./build/css/themes/light.css" media="all">
+    <link rel="stylesheet" href="/myhtml/build/css/app.css" media="all">
+    <link rel="stylesheet" href="/myhtml/build/css/themes/light.css" media="all">
 </head>
 <body>
     <div class="layui-layout layui-layout-admin kit-layout-admin">
         <div class="layui-header">
-            <div class="layui-logo">KIT ADMIN</div>
+            <div class="layui-logo">MCC 实验室</div>
             <div class="layui-logo kit-logo-mobile">K</div>
             <ul class="layui-nav layui-layout-left kit-nav" kit-one-level>
                 <li class="layui-nav-item"><a href="javascript:;">学生列表</a></li>
-                <li class="layui-nav-item"><a href="javascript:;">实验室成果展示</a></li>
+                <li class="layui-nav-item"><a href="http://39.106.194.129:8080/sshWork/realistic/index.action?mgrId=1">实验室成果展示</a></li>
             </ul>
             <ul class="layui-nav layui-layout-right kit-nav">
                 <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <img src="" class="layui-nav-img"> 白杨
+                        <img src="" class="layui-nav-img"> <s:property value="#session.userbean.realname"/>
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">基本资料</a></dd>
                         <dd><a href="javascript:;">安全设置</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li>
+                <li class="layui-nav-item"><a href="logout.action"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li>
             </ul>
         </div>
 
@@ -45,11 +45,11 @@
                         <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 会议</span></a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                <a href="employeeListMeetingByMgrId.action?currentpage=1&pagesize=10" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
                                     <i class="layui-icon">&#xe6c6;</i><span> 历史会议</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 进行中的会议</span></a>
+                                <a href="employeeListMeetingBefore.action?currentpage=1&pagesize=10" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 进行中的会议</span></a>
                             </dd>
                         </dl>
                     </li>
@@ -57,11 +57,11 @@
                         <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 单独报告</span></a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                <a href="listReportByEmpId.action?currentpage=1&pagesize=10" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
                                     <i class="layui-icon">&#xe6c6;</i><span> 我的报告</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
+                                <a href="empSendReport" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
                                     <i class="fa fa-user" aria-hidden="true"></i><span>创建报告</span></a>
                             </dd>
                         </dl>
@@ -70,15 +70,15 @@
                         <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 文件共享</span></a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                                <a href="employeetoaddSharedFile.action" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
                                     <i class="layui-icon">&#xe6c6;</i><span> 分享文件</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
+                                <a href="employeeuserFile.action?currentpage=1&pagesize=10" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
                                     <i class="fa fa-user" aria-hidden="true"></i><span>我的文件</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
+                                <a href="employeesharedFile.action?currentpage=1&pagesize=10" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
                                     <i class="fa fa-user" aria-hidden="true"></i><span>所有文件</span></a>
                             </dd>
                         </dl>
@@ -112,11 +112,11 @@
         </div>
     </div>
 
-    <script src="./plugins/layui/layui.js"></script>
+    <script src="/myhtml/plugins/layui/layui.js"></script>
     <script>
         var message;
         layui.config({
-            base: 'build/js/'
+            base: '/myhtml/build/js/'
         }).use(['app', 'message'], function() {
             var app = layui.app,
                 $ = layui.jquery,
@@ -131,7 +131,7 @@
                 layer.open({
                     title: false,
                     type: 1,
-                    content: '<img src="/build/images/pay.png" />',
+                    content: '<img src="/myhtml/build/images/pay.png" />',
                     area: ['500px', '250px'],
                     shadeClose: true
                 });

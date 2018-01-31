@@ -4,16 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>汇报</title>
+<title>登录系统</title>
 <s:head/>
 </head>
 <body>
-<%@include file="empUI.jsp"%>
-<div class="layui-body" id="container">
-	<table class="layui-table" lay-filter="test" id="test">
-		<tr><br/></tr>
-		<tr><br/></tr>
-		<tr><br/></tr>
+<table width="960" align="center"
+	background="${pageContext.request.contextPath}/images/bodybg.jpg">
 <tr>
 <td>
 <s:if test="actionMessages.size()>0">
@@ -23,17 +19,18 @@
 </s:if>
 <s:actionerror cssClass="error"/>
 <div align="center">
-<s:form action="employeeshareFile"
-	enctype="multipart/form-data">
-	<s:file name="upload" label="选择文件(大小不能超过9M)"/>
-	<s:textarea name="description" cols="100" rows="5" label="简单描述"/>
-	<s:fielderror/>
-	<s:submit value="分享"/>
+<s:form action="processLogin">
+	<s:textfield name="manager.name" label="mcc用户名"/>
+	<s:textfield name="manager.pass" label="密码"/>
+	<!--<s:textfield name="vercode" label="验证码"/>-->
+	<tr><td colspan="2">
+	<s:submit value="登录" theme="simple"/><s:reset  theme="simple" value="重填"/>
+	</td></tr>
 </s:form>
 </div>
+<!--  验证码：<img name="d" src="authImg">-->
 </td>
 </tr>
 </table>
-</div>
 </body>
 </html>

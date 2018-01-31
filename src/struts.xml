@@ -7,7 +7,7 @@
 <struts>
 	<!-- 配置了系列常量 -->
 	<constant name="struts.custom.i18n.resources" value="resource"/>
-	<constant name="struts.i18n.encoding" value="GBK"/>
+	<constant name="struts.i18n.encoding" value="utf-8"/>
 	<constant name="struts.devMode" value="true"/>
 	<constant name="struts.multipart.maxSize" value="10000000"/>
 	<package name="default" extends="struts-default">
@@ -206,10 +206,10 @@
 		<!-- 定义处理登录系统的的Action -->
 		<action name="processLogin"
 			class="action.LoginAction">
-			<result name="input">/WEB-INF/content/login.jsp</result>
+			<result name="input">login.jsp</result>
 			<result name="mgr">/WEB-INF/content/manager/index.jsp</result>
 			<result name="emp">/WEB-INF/content/employee/index.jsp</result>
-			<result name="error">/WEB-INF/content/login.jsp</result>
+			<result name="error">login.jsp</result>
 		</action>
 		
 		<!-- 定义处理注册的Action -->
@@ -298,7 +298,7 @@
 
 		<action name="testmt"
 				class="action.ListMeetingAction" method="listMeetingByMgr">
-			<result>listMeeting.jsp</result>
+			<result>mgrlistMeeting.jsp</result>
 		</action>
 
 		<action name="*sharedFile"
@@ -585,6 +585,10 @@
 		<action name="communication">
 			<result>communication.jsp</result>
 		</action>
+
+        <action name="plogin">
+            <result>/myhtml/login.jsp</result>
+        </action>
 		
 		<action name="main">
 			<!-- 这里需要注意Result并不需要 '/'这个符号 否则会出现404这样的错误自己找了好久才找到 -->

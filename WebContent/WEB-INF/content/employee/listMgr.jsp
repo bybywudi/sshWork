@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-   <title>�鿴��ʦ�б�</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>查看老师列表</title>
 </head>
 <body>
 <%@include file="../header.jsp"%>
@@ -23,11 +23,11 @@
 <table width="80%" border="0" align="center" 
 	cellspacing="1" bgcolor="#cccccc">
   <tr bgcolor="#e1e1e1" >
-	<td colspan="3" ><div class="mytitle">�����ڲ鿴ȫ����ʦ</div></td> 
+	<td colspan="3" ><div class="mytitle">您正在查看全部老师</div></td> 
   </tr>
   <tr class="pt11" height="45">
-	<td><b>��ʵ����</b></td>
-	<td><b>���</b></td>
+	<td><b>真实姓名</b></td>
+	<td><b>简介</b></td>
   </tr>
 <s:iterator value="mgrs" status="index">  
  	<s:if test="#index.odd == true"> 
@@ -38,7 +38,7 @@
 	</s:else>
 	<td><s:property value="empRealName"/></td>
 	<td><s:property value="empName"/></td>
-	<td><a href="sendSetMgrApp?mgrName=<s:property value="empName"/>">��������</a></td>
+	<td><a href="sendSetMgrApp?mgrName=<s:property value="empName"/>">发送申请</a></td>
   </tr>
 </s:iterator>  
 </table>

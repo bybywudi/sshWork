@@ -8,9 +8,12 @@
 <s:head/>
 </head>
 <body>
-<%@include file="empheader.jsp"%>
-<table width="960" align="center"
-	background="${pageContext.request.contextPath}/images/bodybg.jpg">
+<%@include file="empUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
 <tr>
 <td>
 <s:if test="actionMessages.size()>0">
@@ -61,5 +64,6 @@
 </td>
 </tr>
 </table>
+</div>
 </body>
 </html>

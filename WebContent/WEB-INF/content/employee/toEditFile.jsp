@@ -1,17 +1,19 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>老师首页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>缂栬緫鏂囦欢</title>
 </head>
 <body>
-<%@include file="../header.jsp"%> 
-<%@include file="empheader.jsp"%>
-<table width="960" align="center" 
-	background="images/bodybg.jpg">
+<%@include file="empUI.jsp"%>
+<div class="layui-body" id="container">
+	<table class="layui-table" lay-filter="test" id="test">
+		<tr><br/></tr>
+		<tr><br/></tr>
+		<tr><br/></tr>
   <tr height="60">
 	<td>&nbsp;</td>
   </tr>
@@ -29,15 +31,16 @@
 <s:actionerror cssClass="error"/>
 <div align="center">
 <s:form action="empeditFile">
-	<s:textarea name="description" value="%{upfile.description}" label="文件描述"/>
-	<s:textarea name="url" value="%{upfile.url}" label="文件标题"/>
-    <s:textarea name="fileName" value="%{upfile.fileName}" label="文件名（必须加后缀，如.txt）"/>
+	<s:textarea name="description" value="%{upfile.description}" label="鏂囦欢鎻忚堪"/>
+	<s:textarea name="url" value="%{upfile.url}" label="鏂囦欢鏍囬"/>
+    <s:textarea name="fileName" value="%{upfile.fileName}" label="鏂囦欢鍚嶏紙蹇呴』鍔犲悗缂�锛屽.txt锛�"/>
 	<s:hidden name="id" value="%{upfile.id}"/>
-	<s:submit value="修改"/>
+	<s:submit value="淇敼"/>
 </s:form>
 </div>
 </td>
 </tr>
 </table>
+</div>
 </body>
 </html>

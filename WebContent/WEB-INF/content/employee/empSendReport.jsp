@@ -1,16 +1,19 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>µÇÂ¼ÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>æŠ¥å‘Š</title>
 <s:head/>
 </head>
 <body>
-<%@include file="empheader.jsp"%>
-<table width="960" align="center"
-	background="${pageContext.request.contextPath}/images/bodybg.jpg">
+<%@include file="empUI.jsp"%>
+<div class="layui-body" id="container">
+<table class="layui-table" lay-filter="test" id="test">
+	<tr><br/></tr>
+	<tr><br/></tr>
+	<tr><br/></tr>
 <tr>
 <td>
 <s:if test="actionMessages.size()>0">
@@ -22,17 +25,18 @@
 <div align="center">
 <s:form action="sendReport"
 	enctype="multipart/form-data">
-	<s:textfield name="report.headline" label="±¨¸æ±êÌâ"/>
-	<s:textarea name="report.content" cols="100" rows="10" label="±¨¸æÄÚÈÝ"/>
-	Ìí¼ÓÎÄ¼þ£¨¿ÉÑ¡£©£º<br/>
-	<s:file name="upload" label="Ñ¡ÔñÎÄ¼þ"/>
+	<s:textfield name="report.headline" label="æŠ¥å‘Šæ ‡é¢˜"/>
+	<s:textarea name="report.content" cols="100" rows="10" label="æŠ¥å‘Šå†…å®¹"/>
+	æ·»åŠ æ–‡ä»¶ï¼ˆå¯é€‰ï¼‰ï¼š<br/>
+	<s:file name="upload" label="é€‰æ‹©æ–‡ä»¶"/>
 	<s:fielderror/>
-	<s:textarea name="description" label="ÎÄ¼þÃèÊö"/>
-	<s:submit value="·¢ËÍ±¨¸æ"/>
+	<s:textarea name="description" label="æ–‡ä»¶æè¿°"/>
+	<s:submit value="å‘é€æŠ¥å‘Š"/>
 </s:form>
 </div>
 </td>
 </tr>
 </table>
+</div>
 </body>
 </html>
