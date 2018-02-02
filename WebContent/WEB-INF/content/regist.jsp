@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>注册系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>娉ㄥ唽绯荤粺</title>
 <s:head/>
 </head>
 <body>
@@ -21,20 +21,20 @@
 <s:actionerror cssClass="error"/>
 <div align="center">
 <s:form action="processRegist">
-	<s:textfield name="manager.name" label="用户名"/>
-	<s:textfield name="manager.pass" label="密码"/>
-	<s:textfield name="manager.realname" label="真实姓名"/>
+	<s:textfield name="manager.name" label="鐢ㄦ埛鍚�"/>
+	<s:textfield name="manager.pass" label="瀵嗙爜"/>
+	<s:textfield name="manager.realname" label="鐪熷疄濮撳悕"/>
 	
-	<s:radio name="role" label="要注册的身份类型" labelposition="top" list="#{'学生':'student','老师':'teacher'}" listKey="value" listValue="key"></s:radio>
-	<%--<s:radio name="role" label="要注册的身份类型" labelposition="top" list="#{'学生':'student'}" listKey="value" listValue="key"></s:radio>--%>
+	<s:radio name="role" label="瑕佹敞鍐岀殑韬唤绫诲瀷" labelposition="top" list="#{'瀛︾敓':'student','鑰佸笀':'teacher'}" listKey="value" listValue="key"></s:radio>
+	<%--<s:radio name="role" label="瑕佹敞鍐岀殑韬唤绫诲瀷" labelposition="top" list="#{'瀛︾敓':'student'}" listKey="value" listValue="key"></s:radio>--%>
 	
-	<s:textfield name="vercode" label="验证码"/>
+	<s:textfield name="vercode" label="楠岃瘉鐮�"/>
 	<tr><td colspan="2">
-	<s:submit value="注册" theme="simple"/><s:reset  theme="simple" value="重填"/>
+	<s:submit value="娉ㄥ唽" theme="simple"/><s:reset  theme="simple" value="閲嶅～"/>
 	</td></tr>
 </s:form>
 </div>
-验证码：<img name="d" src="authImg">
+楠岃瘉鐮侊細<img name="d" src="authImg">
 </td>
 </tr>
 </table>

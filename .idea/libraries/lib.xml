@@ -56,8 +56,8 @@
       <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/jboss-logging-3.1.3.GA.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/struts2-core-2.3.16.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/aspectjtools.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../apache-tomcat-8.5.23/lib/jsp-api.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../apache-tomcat-8.5.23/lib/servlet-api.jar!/" />
+      <root url="jar://D:/apache-tomcat-8.5.23/lib/jsp-api.jar!/" />
+      <root url="jar://D:/apache-tomcat-8.5.23/lib/servlet-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

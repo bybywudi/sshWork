@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>登录系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>鐧诲綍绯荤粺</title>
 <s:head/>
 </head>
 <body>
@@ -21,15 +21,15 @@
 <s:actionerror cssClass="error"/>
 <div align="center">
 <s:form action="processLogin">
-	<s:textfield name="manager.name" label="用户名"/>
-	<s:textfield name="manager.pass" label="密码"/>
-	<!--<s:textfield name="vercode" label="验证码"/>-->
+	<s:textfield name="manager.name" label="鐢ㄦ埛鍚�"/>
+	<s:textfield name="manager.pass" label="瀵嗙爜"/>
+	<!--<s:textfield name="vercode" label="楠岃瘉鐮�"/>-->
 	<tr><td colspan="2">
-	<s:submit value="登录" theme="simple"/><s:reset  theme="simple" value="重填"/>
+	<s:submit value="鐧诲綍" theme="simple"/><s:reset  theme="simple" value="閲嶅～"/>
 	</td></tr>
 </s:form>
 </div>
-<!--  验证码：<img name="d" src="authImg">-->
+<!--  楠岃瘉鐮侊細<img name="d" src="authImg">-->
 </td>
 </tr>
 </table>
